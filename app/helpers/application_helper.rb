@@ -1,13 +1,13 @@
 module ApplicationHelper
-  
-  #Returns the full title on a per-page basic
-  
+
+  # Returns the full title on a per-page basic
+
   def full_title(page_title = '')
-    base_title = "Ticket Market"
+    base_title = 'Ticket Market'
     if page_title.empty?
       base_title
     else
-      page_title + " | " + base_title
+      page_title + ' | ' + base_title
     end
   end
-end 
+end
