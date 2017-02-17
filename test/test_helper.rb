@@ -8,9 +8,6 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
   include ApplicationHelper
-end
-
-class PostsTests < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-
 end
+

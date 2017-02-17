@@ -1,9 +1,11 @@
 one:
   email: user@example.com
   encrypted_password: password1
-
+  confirmation_token: confirmation1
+  confirmed_at: 2.hours.ago
 two:
   email: user2@example.com
   encrypted_password: password2
-
+  confirmation_token: confirmation2
+  confirmed_at: 2.hours.ago
 

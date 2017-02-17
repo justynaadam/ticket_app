@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PostsTests < ActionDispatch::IntegrationTest
+class UserUpdateTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
  def setup
@@ -8,7 +8,7 @@ class PostsTests < ActionDispatch::IntegrationTest
  end
 
  test 'successful edit' do
-   sign_in @user
+   sign_in users(:one)
    get edit_user_path(@user)
    assert_template 'users/edit'
    name = 'a' * 5

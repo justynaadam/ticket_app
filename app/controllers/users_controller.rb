@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def update
-
     @user = User.find(current_user.id)
     params[:user][:name] = nil if params[:user][:name] == ''
     params[:user][:location] = nil if params[:user][:location] == ''
@@ -56,5 +55,4 @@ class UsersController < ApplicationController
     def user_email_params
       params.require(:user).permit(:email)
     end
-
 end
