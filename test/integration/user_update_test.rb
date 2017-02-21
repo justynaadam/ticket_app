@@ -5,6 +5,7 @@ class UserUpdateTest < ActionDispatch::IntegrationTest
 
  def setup
    @user = users(:one)
+   @user.confirm
  end
 
  test 'successful edit' do

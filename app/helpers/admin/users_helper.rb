@@ -1,4 +1,4 @@
-module UsersHelper
+module Admin::UsersHelper
 
   def resource_name
     :user
@@ -17,4 +17,3 @@ module UsersHelper
     redirect_to edit_user_path(@user)
   end
 end
- 

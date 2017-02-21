@@ -1,11 +1,18 @@
 one:
   email: user@example.com
   encrypted_password: password1
-  confirmation_token: confirmation1
-  confirmed_at: 2.hours.ago
+
 two:
   email: user2@example.com
   encrypted_password: password2
-  confirmation_token: confirmation2
-  confirmed_at: 2.hours.ago
 
+admin:
+  email: admin@example.com
+  encrypted_password: password3
+  admin: true
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  email: <%= "user-#{n}@example.com" %>
+  encrypted_password: password
+<% end %>
