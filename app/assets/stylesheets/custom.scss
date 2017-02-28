@@ -105,3 +105,54 @@ footer ul li {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* tickets */
+
+.tickets {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .title {
+    margin-top: 5em;
+    padding-top: 0;
+    font-size: 1.2em;
+    margin-left: 60px;
+        img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .category {
+    display: block;
+    margin-left: 60px;
+  }
+  
+    .location {
+    display: block;
+    margin-left: 60px;
+  }
+  
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  
+  .price {
+
+
+    padding-top: 0;
+    font-size: 1.5em;
+    float: right;
+
+  }
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}

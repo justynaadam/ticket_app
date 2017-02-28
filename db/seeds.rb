@@ -18,3 +18,12 @@ User.create!(name: 'Admin Name',
                password: password,
                password_confirmation: password)
 end
+
+users = User.order(:created_at).take(6)
+50.times do
+  title = Faker::Lorem.sentence(1)
+  content = Faker::Lorem.sentence(10)
+  price = Faker::Number.number(3)
+  ticket_type = 'paper'
+  users.each { |user| user.tickets.create!(title: title, content: content, price: price, ticket_type: ticket_type) }
+end

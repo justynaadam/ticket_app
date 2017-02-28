@@ -1,0 +1,41 @@
+one:
+  title: MyText
+  content: MyText
+  price: 9.99
+  ticket_type: paper
+  created_at: <%= 10.minutes.ago %>
+  user: one
+
+two:
+  title: MyText
+  content: MyText
+  price: 9.99
+  ticket_type: paper
+  created_at: <%= 2.hours.ago %>
+  user: one
+
+most_recent:
+  title: Most recent
+  content: MyText
+  price: 9.99
+  ticket_type: paper
+  created_at: <%= Time.zone.now %>
+  user: one
+
+other_user_ticket:
+  title: MyText
+  content: MyText
+  price: 9.99
+  ticket_type: paper
+  created_at: <%= 30.minutes.ago %>
+  user: two
+
+<% 30.times do |n| %>
+ticket_<%= n %>:
+  title: <%= Faker::Lorem.sentence(1) %>
+  content: <%= Faker::Lorem.sentence(5) %>
+  price: 9.99
+  ticket_type: paper
+  created_at: <%= 42.days.ago %>
+  user: one
+<% end %>

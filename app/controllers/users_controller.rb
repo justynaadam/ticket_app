@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def show
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
+    @tickets = @user.tickets.paginate(page: params[:page])
   end
 
   def edit

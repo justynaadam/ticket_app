@@ -1,1 +1,15 @@
-<%= @user.email %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @user.name %></h3><br/>
+    All users's tickets
+  </div>
+  <div class="panel-body">
+    <% if @user.tickets.any? %>
+          <ul class="tickets">
+        <%= render @tickets %>
+      </ul>
+      <%= will_paginate @tickets %>
+    <% end %>
+
+  </div>
+</div>

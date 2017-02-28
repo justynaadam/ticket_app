@@ -1,0 +1,18 @@
+<li>
+  <span class="title"><%= link_to ticket.title, ticket_path(ticket) %></span>
+  <span class="price"><%= ticket.price %></span>
+  <span class="category">#ticket.category</span>
+  <span class="location"><%= ticket.user.location %></span>
+  <span class="timestamp">
+    Added <%= time_ago_in_words(ticket.created_at) %> ago.
+    <% if current_user == ticket.user %>
+      <%= link_to "delete", ticket, method: :delete %>
+      <%= link_to "edit", edit_ticket_path(ticket) %>
+    <% end %>
+  </span>
+
+
+</li>
+  </aside>
+
+   

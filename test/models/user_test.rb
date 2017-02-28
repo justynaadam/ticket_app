@@ -79,4 +79,15 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test 'associated tickets should be destroyed' do
+    @user.save
+    @user.tickets.create!(title: 'Lorem ipsum', 
+                          content: 'Lorem ipsum dolor sit amet',
+                          price: 100,
+                          ticket_type: 'paper')
+    assert_difference 'Ticket.count', -1 do
+      @user.destroy
+    end
+  end
+
 end

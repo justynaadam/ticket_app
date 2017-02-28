@@ -11,7 +11,7 @@
           </a>
                <ul class="dropdown-menu" >
                <li class="dropdown-header">My TM:</li>
-               <li><%= link_to "Announcements", "#" %> </li>
+               <li><%= link_to "Announcements", user_path(current_user) %> </li>
                <li><%= link_to "Replies", "#" %> </li>
                <li><%= link_to "Settings", edit_user_path(current_user) %> </li>
                <li class="divider"></li>
@@ -26,7 +26,7 @@
         <% else %>
           <li><%= link_to "My TM", new_user_session_path  %> </li>
         <% end %>
-        <li><%= link_to "+ Add Announcment", '#', class: "btn btn-lg btn-warning" %></li>
+        <li><%= link_to "+ Add Announcment", new_ticket_path, class: "btn btn-lg btn-warning" %></li>
       </ul>
     </nav>
   </div>

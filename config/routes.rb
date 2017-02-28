@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     root to: "admin#index"
     resources :users, only: [:index, :show, :destroy]
   end
+  resources :tickets
 end

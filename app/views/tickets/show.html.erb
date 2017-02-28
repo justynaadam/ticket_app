@@ -1,0 +1,11 @@
+<% provide(:title, "Ticket") %>
+<h1><%= @ticket.title %></h1>
+<h2> <%= @ticket.content %>
+</br> type: <%= @ticket.ticket_type %>
+</br> price: <%= @ticket.price %> </h2>
+<h3><%= link_to @ticket.user.name, user_path(@ticket.user) %></h3>
+<% if current_user == @ticket.user %>
+  <%= link_to "delete", ticket_path(@ticket), method: :delete,
+                        data: { confirm: "You sure?" } %>
+  <%= link_to "edit", edit_ticket_path(@ticket) %>
+<% end %>
