@@ -18,6 +18,7 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
                                            content: '',
                                            ticket_type: '',
                                            price: '',
+                                           location: '',
                                            user_attributes: { name: '',
                                                               phone: '' } } }
     end
@@ -27,13 +28,15 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
     content = 'content'
     ticket_type = 'ticket_type'
     price = 123
+    location = 'location'
     name = 'name'
     phone = 9999
     assert_difference 'Ticket.count', 1 do
     post tickets_path, params: { ticket: { title: title,
                                           content: content,
                                           ticket_type: ticket_type,
-                                          price: price ,
+                                          price: price,
+                                          location: location,
                                           user_attributes: { name: name,
                                                               phone: phone } } }
     end

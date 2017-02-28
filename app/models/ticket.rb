@@ -7,4 +7,5 @@ class Ticket < ApplicationRecord
   validates :content, presence: true, length: { maximum: 4096 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :ticket_type, presence: true
+  validates :location, length: { maximum: 50 }, presence: true
 end

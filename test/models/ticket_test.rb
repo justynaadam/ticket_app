@@ -8,7 +8,8 @@ class TicketTest < ActiveSupport::TestCase
     @ticket = @user.tickets.build(title: 'Lorem ipsum', 
                                   content: 'Lorem ipsum dolor sit amet',
                                   price: 100,
-                                  ticket_type: 'paper')
+                                  ticket_type: 'paper',
+                                  location: 'Location')
   end
   
   test 'should be vaild' do
@@ -52,6 +53,16 @@ class TicketTest < ActiveSupport::TestCase
 
   test 'ticket_type should be present' do
     @ticket.ticket_type = '     '
+    assert_not @ticket.valid?
+  end
+
+   test 'location should not be too long' do
+    @ticket.location = 'a' * 51
+    assert_not @ticket.valid?
+  end
+
+   test 'location should not be blank' do
+    @ticket.location = ' ' * 5
     assert_not @ticket.valid?
   end
 

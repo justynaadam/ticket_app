@@ -17,6 +17,7 @@ class TicketsEditTest < ActionDispatch::IntegrationTest
                                                     content: '',
                                                     ticket_type: ' ',
                                                     price: '',
+                                                    location: '',
                                                     user_attributes: { name: '',
                                                                        phone: '' } } }
     assert_redirected_to root_url
@@ -31,12 +32,14 @@ class TicketsEditTest < ActionDispatch::IntegrationTest
     content = 'updated content'
     ticket_type = 'updated type'
     price = 999
+    location = 'location'
     name = 'name'
     phone = 9999
     patch ticket_path(@ticket), params: { ticket: { title: title,
                                                     content: content,
                                                     ticket_type: ticket_type,
                                                     price: price,
+                                                    location: location,
                                                     user_attributes: { name: name,
                                                                        phone: phone } } }
     assert_not flash.empty?
@@ -47,6 +50,7 @@ class TicketsEditTest < ActionDispatch::IntegrationTest
     assert_equal content, @ticket.content
     assert_equal ticket_type, @ticket.ticket_type
     assert_equal price, @ticket.price
+    assert_equal location, @ticket.location
     assert_equal name, @user.name
     assert_equal phone, @user.phone
   end

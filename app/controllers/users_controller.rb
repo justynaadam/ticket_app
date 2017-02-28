@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     params[:user][:name] = nil if params[:user][:name] == ''
-    params[:user][:location] = nil if params[:user][:location] == ''
     params[:user][:phone] = nil if params[:user][:phone] == ''
 
     if @user.update_attributes(user_params)
@@ -47,7 +46,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :location, :phone)
+      params.require(:user).permit(:name, :phone)
     end
 
     def user_password_params

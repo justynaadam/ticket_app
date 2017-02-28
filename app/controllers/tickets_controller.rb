@@ -54,7 +54,7 @@ class TicketsController < ApplicationController
   private
 
       def ticket_params
-        params.require(:ticket).permit(:title, :content, :price, :ticket_type, user_attributes: [:name, :phone])
+        params.require(:ticket).permit(:title, :content, :price, :ticket_type, :location, user_attributes: [:name, :phone])
       end
      
       def correct_user

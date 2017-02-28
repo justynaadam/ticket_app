@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224175515) do
+ActiveRecord::Schema.define(version: 20170228105859) do
 
   create_table "tickets", force: :cascade do |t|
     t.text     "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170224175515) do
     t.integer  "user_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "location"
     t.index ["user_id", "created_at"], name: "index_tickets_on_user_id_and_created_at"
     t.index ["user_id", "id"], name: "index_tickets_on_user_id_and_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
@@ -38,7 +39,6 @@ ActiveRecord::Schema.define(version: 20170224175515) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.string   "name"
-    t.string   "location"
     t.integer  "phone"
     t.boolean  "admin",                  default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

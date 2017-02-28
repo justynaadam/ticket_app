@@ -64,16 +64,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test 'location should not be too long' do
-    @user.location = 'a' * 51
-    assert_not @user.valid?
-  end
-
-   test 'location should not be blank' do
-    @user.location = ' ' * 5
-    assert_not @user.valid?
-  end
-
   test 'phone should not be too long' do
     @user.phone = ('9' * 16).to_i
     assert_not @user.valid?
@@ -84,7 +74,8 @@ class UserTest < ActiveSupport::TestCase
     @user.tickets.create!(title: 'Lorem ipsum', 
                           content: 'Lorem ipsum dolor sit amet',
                           price: 100,
-                          ticket_type: 'paper')
+                          ticket_type: 'paper',
+                          location: 'location')
     assert_difference 'Ticket.count', -1 do
       @user.destroy
     end
