@@ -1,0 +1,8 @@
+<%= @category.text %>
+ <div class="panel-body">
+    <% if @category.tickets.any? %>
+          <ul class="tickets">
+        <%= render @tickets %>
+      </ul>
+      <%= will_paginate @tickets %>
+    <% end %>

@@ -71,11 +71,13 @@ class UserTest < ActiveSupport::TestCase
 
   test 'associated tickets should be destroyed' do
     @user.save
-    @user.tickets.create!(title: 'Lorem ipsum', 
+    ticket = @user.tickets.build(title: 'Lorem ipsum', 
                           content: 'Lorem ipsum dolor sit amet',
                           price: 100,
                           ticket_type: 'paper',
                           location: 'location')
+                          ticket.category = categories(:one)
+                          ticket.save
     assert_difference 'Ticket.count', -1 do
       @user.destroy
     end

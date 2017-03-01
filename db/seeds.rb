@@ -1,3 +1,10 @@
+main_categories = ['event', 'travel']
+main_categories.each { |main_category| Category.create!(text: main_category) }
+e_subcategories = ['sport', 'music', 'cinema', 'thetre']
+e_subcategories.each { |e_subcategory| Category.create!(text: e_subcategory, main_id: 1) }
+t_subcategories = ['bus', 'train', 'plane']
+t_subcategories.each { |t_subcategory| Category.create!(text: t_subcategory, main_id: 2) }
+
 User.create!(name: 'Admin Name',
              phone: 123123,
              email: "example@foobar.org",
@@ -25,5 +32,10 @@ users = User.order(:created_at).take(6)
   price = Faker::Number.number(3)
   ticket_type = 'paper'
   location = Faker::GameOfThrones.city
-  users.each { |user| user.tickets.create!(title: title, content: content, price: price, ticket_type: ticket_type, location: location) }
+  category_id = (3..9).to_a.shuffle[0]
+  users.each do |user| 
+    user.tickets.create!(title: title, content: content,
+                         price: price, ticket_type: ticket_type,
+                         location: location, category_id: category_id) 
+  end
 end

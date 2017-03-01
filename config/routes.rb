@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+
   devise_for :users
   root 'static_pages#home'
   get '/help', to: 'static_pages#help'
@@ -15,4 +17,5 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :destroy]
   end
   resources :tickets
+  resources :categories
 end

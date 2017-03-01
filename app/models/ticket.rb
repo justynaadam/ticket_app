@@ -1,5 +1,6 @@
 class Ticket < ApplicationRecord
   belongs_to :user
+  belongs_to :category
   attr_accessor :user_attributes
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true

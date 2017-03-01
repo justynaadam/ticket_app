@@ -10,6 +10,7 @@ class TicketTest < ActiveSupport::TestCase
                                   price: 100,
                                   ticket_type: 'paper',
                                   location: 'Location')
+    @ticket.category = categories(:one)
   end
   
   test 'should be vaild' do
