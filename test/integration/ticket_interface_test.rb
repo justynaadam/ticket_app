@@ -19,6 +19,7 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
                                            ticket_type: '',
                                            price: '',
                                            location: '',
+                                           category_id: '',
                                            user_attributes: { name: '',
                                                               phone: '' } } }
     end
@@ -32,11 +33,13 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
     name = 'name'
     phone = 9999
     assert_difference 'Ticket.count', 1 do
+    @categories = assigns(:categories)
     post tickets_path, params: { ticket: { title: title,
                                           content: content,
                                           ticket_type: ticket_type,
                                           price: price,
                                           location: location,
+                                          category_id: 3,
                                           user_attributes: { name: name,
                                                               phone: phone } } }
     end

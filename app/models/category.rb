@@ -6,4 +6,8 @@ class Category < ApplicationRecord
 
   has_many :tickets
   validates :text, presence: true, length: { maximum: 30 }
+
+  def main?
+    main_id.nil?
+  end
 end

@@ -40,6 +40,7 @@ class TicketsEditTest < ActionDispatch::IntegrationTest
                                                     ticket_type: ticket_type,
                                                     price: price,
                                                     location: location,
+                                                    category_id: 3,
                                                     user_attributes: { name: name,
                                                                        phone: phone } } }
     assert_not flash.empty?

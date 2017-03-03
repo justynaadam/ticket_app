@@ -1,8 +1,14 @@
-<%= @category.text %>
+<%= link_to 'All categories', categories_path %><br>
+<% if @category.main? %>
+<%= @category.text %> >>
+<% @category.subcategories.each do |subcategory| %>
+<%= link_to subcategory.text, category_path(subcategory) %>  
+<% end %>
+<% else %>
+<%= link_to @category.main.text, category_path(@category.main) %> << <%= @category.text %>
+<% end %>
  <div class="panel-body">
-    <% if @category.tickets.any? %>
-          <ul class="tickets">
-        <%= render @tickets %>
-      </ul>
-      <%= will_paginate @tickets %>
-    <% end %>
+   <ul class="tickets">
+     <%= render @tickets %>
+    </ul>
+  <%= will_paginate @tickets %>
