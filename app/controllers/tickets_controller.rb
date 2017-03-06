@@ -9,6 +9,8 @@ class TicketsController < ApplicationController
 
   def show
      @ticket = Ticket.find(params[:id])
+     @next_ticket = @ticket.find_next(@ticket.updated_at, @ticket.category_id)
+     @previous_ticket = @ticket.find_previous(@ticket.updated_at, @ticket.category_id)
   end
 
   def new
@@ -26,6 +28,7 @@ class TicketsController < ApplicationController
   end
 
   def edit
+    #@ticket = Ticket.find(params[:id])
   end
 
   def update
@@ -50,11 +53,13 @@ class TicketsController < ApplicationController
     @user.validate_name = true
     redirect_back(fallback_location: root_path) unless @user.save
   end
+
+
   
   private
 
       def ticket_params
-        params.require(:ticket).permit(:title, :content, :price, :ticket_type, :location, :category_id, user_attributes: [:name, :phone])
+        params.require(:ticket).permit(:title, :content, :price, :ticket_type, :location, :category_id, :picture, user_attributes: [:name, :phone])
       end
      
       def correct_user

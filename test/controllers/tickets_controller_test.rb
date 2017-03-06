@@ -48,4 +48,17 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_path
   end
+
+  test 'should find previous ticket' do
+    ticket = tickets(:one)
+    previous_t = ticket.find_previous(ticket.updated_at, ticket.category_id)
+    #assert previous_t == tickets(:most_recent)
+  end
+
+  test 'should find next ticket' do
+    ticket = tickets(:one)
+    get ticket_path(ticket)
+    next_t = ticket.find_next(ticket.updated_at, ticket.category_id)
+    assert next_t == tickets(:two)
+  end
 end

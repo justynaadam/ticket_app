@@ -1,22 +1,24 @@
 one:
-  title: MyText
+  title: one
   content: MyText
   price: 9.99
   ticket_type: paper
   created_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>
   location: MyCity
   user: one
-  category: 
+  category: subcategory_2
 
 two:
-  title: MyText
+  title: two
   content: MyText
   price: 9.99
   ticket_type: paper
   created_at: <%= 2.hours.ago %>
+  updated_at: <%= 2.hours.ago %>
   user: one
   location: MyCity
-  category_id: 3
+  category: subcategory_2
 
 most_recent:
   title: Most recent
@@ -24,28 +26,18 @@ most_recent:
   price: 9.99
   ticket_type: paper
   created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
   user: one
   location: MyCity
-  category_id: 3
+  category: subcategory_2
 
 other_user_ticket:
-  title: MyText
+  title: other_user_ticket
   content: MyText
   price: 9.99
   ticket_type: paper
   created_at: <%= 30.minutes.ago %>
+  updated_at: <%= 30.minutes.ago %>
   user: two
   location: MyCity
-  category_id: 3
-
-<% 30.times do |n| %>
-ticket_<%= n %>:
-  title: <%= Faker::Lorem.sentence(1) %>
-  content: <%= Faker::Lorem.sentence(5) %>
-  price: 9.99
-  ticket_type: paper
-  created_at: <%= 2.days.ago %>
-  location: MyCity
-  user: one
-  category_id: 3
-<% end %>
+  category: subcategory_1

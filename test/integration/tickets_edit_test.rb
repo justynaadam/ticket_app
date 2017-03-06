@@ -35,16 +35,16 @@ class TicketsEditTest < ActionDispatch::IntegrationTest
     location = 'location'
     name = 'name'
     phone = 9999
+    category = categories(:subcategory_2)
     patch ticket_path(@ticket), params: { ticket: { title: title,
                                                     content: content,
                                                     ticket_type: ticket_type,
                                                     price: price,
                                                     location: location,
-                                                    category_id: 3,
+                                                    category_id: category.id,
                                                     user_attributes: { name: name,
                                                                        phone: phone } } }
-    assert_not flash.empty?
-    assert_redirected_to @ticket
+    assert flash.present?
     @ticket.reload
     @user.reload
     assert_equal title, @ticket.title

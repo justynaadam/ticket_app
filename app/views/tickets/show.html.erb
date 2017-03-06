@@ -1,9 +1,48 @@
 <% provide(:title, "Ticket") %>
-<h1><%= @ticket.title %></h1>
-<h2> <%= @ticket.content %>
-</br> type: <%= @ticket.ticket_type %>
-</br> price: <%= @ticket.price %> </h2>
-<h3><%= link_to @ticket.user.name, user_path(@ticket.user) %></h3>
+<div class="container">
+  <div class="row pricing">
+    <div class="col-md-10">
+		  <div class="well">
+			  <p>
+				  <%= link_to 'All categories', categories_path %> |
+          <%= link_to @ticket.category.main.text, category_path(@ticket.category.main) %> 
+          << <%= link_to @ticket.category.text, category_path(@ticket.category) %>
+			  </p>
+			  <hr>
+				<% unless @previous_ticket.nil? %>
+          <p class="btn btn-default left"><%= link_to "previous", ticket_path(@previous_ticket) %></p>
+        <% end %>
+        <% unless @next_ticket.nil? %>
+          <p class="btn btn-default right"><%= link_to "next", ticket_path(@next_ticket) %></p>
+        <% end %>
+        <br><br>
+				<p class="center">
+				  <% if @ticket.picture? %>
+            <%= image_tag @ticket.picture.url %>
+          <% end %>
+        </p>
+				<hr>
+				<p style="white-space: pre">Added: <%= @ticket.created_at.to_formatted_s(:long) %>      Location: <%= @ticket.location %>      type: <%= @ticket.ticket_type %></p>
+				<h1><b><%= @ticket.title %></b></h1>
+				<hr><%= @ticket.content %>
+			</div>
+		</div>
+	<div class="col-md-2">
+		<div class="well">
+			<h3><b><%= @ticket.price %></b></h3>
+			<hr>
+			<p><%= link_to @ticket.user.name, user_path(@ticket.user) %></p>
+			<hr>
+			<% if @ticket.user.phone? %>
+			  <p>Phone: <%= @ticket.user.phone %></p>
+			<% end %>
+			<a href="#" class="btn btn-default btn-block">Send message</a>
+		</div>
+	</div>
+</div>
+
+
+
 <% if current_user == @ticket.user %>
   <%= link_to "delete", ticket_path(@ticket), method: :delete,
                         data: { confirm: "You sure?" } %>

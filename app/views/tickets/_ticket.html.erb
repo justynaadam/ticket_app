@@ -1,18 +1,19 @@
-<li>
-  <span class="title"><%= link_to ticket.title, ticket_path(ticket) %></span>
-  <span class="price"><%= ticket.price %></span>
-  <span class="category"><%= ticket.category.main.text %> > <%= ticket.category.text%></span>
-  <span class="location"><%= ticket.location %></span>
-  <span class="timestamp">
-    Added <%= time_ago_in_words(ticket.created_at) %> ago.
-    <% if current_user == ticket.user %>
-      <%= link_to "delete", ticket, method: :delete %>
-      <%= link_to "edit", edit_ticket_path(ticket) %>
-    <% end %>
-  </span>
+    <tr>
+       <td class="hidden-xs"><%= image_tag ticket.picture.url, size: 120 if ticket.picture? %></td>
+       <td><%= link_to ticket.title, ticket_path(ticket) %>
+         <br><%= ticket.category.main.text %> > <%= ticket.category.text%>
+         <br><%= ticket.location %>
+         <br>Added <%= time_ago_in_words(ticket.created_at) %> ago.
+         <br>
+         <% if current_user == ticket.user %>
+           <%= link_to "delete", ticket, method: :delete %>
+           <%= link_to "edit", edit_ticket_path(ticket) %>
+         <% end %>
+       </td>
+       <td><%= ticket.price %></td>
+       </td>
+    </tr>
 
 
-</li>
-  </aside>
 
    
