@@ -11,6 +11,13 @@ class Ticket < ApplicationRecord
   validates :ticket_type, presence: true
   validates :location, length: { maximum: 50 }, presence: true
   validate :picture_size
+  validate :not_main_category
+
+  def not_main_category
+    if self.category.main?
+      errors.add(:category_id, "should choose subcategory")
+    end
+  end
   
   def picture_size
     if picture.size > 5.megabytes

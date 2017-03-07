@@ -1,21 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 main_category:
-  text: MyString
-  main_id: nil
+  text: main_category
   created_at: <%= 3.days.ago %>
 
 subcategory_1:
-  text: MyString
+  text: subcategory_1
   main: main_category
   created_at: <%= 3.days.ago %>
 
 subcategory_2:
-  text: MyString
+  text: subcategory_2
   main: main_category
   created_at: <%= 3.days.ago %>
 
 one:
-  text: MyString
+  text: one
   main: main_category
   created_at: <%= 3.days.ago %>
