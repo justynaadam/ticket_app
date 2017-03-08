@@ -1,0 +1,7 @@
+<h1>Ticket Market</h1>
+
+<p>Hi <%= @ticket.user.name %>,</p>
+
+<p>Clik on the linkt below to activate your annoucement:</p>
+
+<%= link_to 'Activate', edit_ticket_activation_url(id: @ticket.activation_token, t_id: @ticket.id)%>

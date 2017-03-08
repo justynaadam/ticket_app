@@ -23,6 +23,7 @@ class UserUpdateTest < ActionDispatch::IntegrationTest
    patch user_path(@user), params: { user: { name: name, phone: phone } }
    assert_not flash.nil?
    assert_redirected_to edit_user_path(@user)
+   @user.reload
    assert @user.name == nil
  end
 
@@ -30,7 +31,6 @@ class UserUpdateTest < ActionDispatch::IntegrationTest
    sign_in @user
    get edit_user_path(@user)
    assert_template 'users/edit'
-   assert @user.name.nil?
    name = ' ' * 5
    phone = 'aaa'
    # Invalid name

@@ -1,0 +1,2 @@
+module TicketActivationsHelper
+end

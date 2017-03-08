@@ -61,4 +61,11 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     next_t = ticket.find_next(ticket.updated_at, ticket.category_id)
     assert next_t == tickets(:two)
   end
+
+  test 'should redirect show for non activated ticket' do
+    ticket = tickets(:non_activated)
+    assert_not ticket.activated?
+    get ticket_path(ticket)
+    assert_redirected_to root_url
+  end
 end

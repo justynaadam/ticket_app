@@ -1,8 +1,9 @@
 class Ticket < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  before_create :create_activation_digest
   mount_uploader :picture, PictureUploader
-  attr_accessor :user_attributes
+  attr_accessor :user_attributes, :activation_token
   default_scope -> { order(updated_at: :desc) }
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 70 }
@@ -32,4 +33,35 @@ class Ticket < ApplicationRecord
   def find_previous(up_at, cat_id)
     Ticket.where("updated_at > ? and category_id = ? ", up_at, cat_id).last || nil
   end
+
+  def Ticket.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
+  def Ticket.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def authenticated?(activation_token)
+    digest = send("activation_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(activation_token)
+  end
+
+  def send_activation_email
+    TicketMailer.ticket_activation(self).deliver_now
+  end
+
+  def activate
+    update_attributes(activated: true, activated_at: Time.zone.now)
+  end
+
+  private
+
+    def create_activation_digest
+      self.activation_token = Ticket.new_token
+      self.activation_digest = Ticket.digest(activation_token)
+    end
 end

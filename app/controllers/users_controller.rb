@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tickets = @user.tickets.paginate(page: params[:page])
+    if @user == current_user
+       @tickets = @user.tickets.paginate(page: params[:page])
+    else
+      @tickets = Ticket.where(activated: true, user_id: @user.id).paginate(page: params[:page])
+    end
   end
 
   def edit

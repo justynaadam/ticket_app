@@ -1,6 +1,7 @@
 one:
   email: user@example.com
   encrypted_password: password1
+  name: name one
 
 two:
   email: user2@example.com

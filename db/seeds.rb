@@ -36,6 +36,7 @@ users = User.order(:created_at).take(6)
   users.each do |user| 
     user.tickets.create!(title: title, content: content,
                          price: price, ticket_type: ticket_type,
-                         location: location, category_id: category_id) 
+                         location: location, category_id: category_id,
+                         activated: true, activated_at: Time.zone.now) 
   end
 end

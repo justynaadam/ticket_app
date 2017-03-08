@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
   resources :tickets
   resources :categories
+  resources :ticket_activations, only: [:edit]
 end

@@ -1,0 +1,3 @@
+Hi <%= @ticket.user.name %>,
+Clik on the linkt below to activate your annoucement:
+<%= edit_ticket_activation_url(id: @ticket.activation_token, t_id: @ticket.id) %> 

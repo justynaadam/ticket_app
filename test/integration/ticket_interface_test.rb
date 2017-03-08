@@ -6,6 +6,7 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
     @user = users(:one)
     sign_in @user
     @user.confirm
+    ActionMailer::Base.deliveries.clear
   end
   
   test 'ticket interface' do
@@ -24,8 +25,9 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
                                            user_attributes: { name: '',
                                                               phone: '' } } }
     end
-    # Valid ticket
-
+  end
+    
+    test "valid ticket with ticket activation" do
     get new_ticket_path
     title = 'title'
     content = 'content'
@@ -47,13 +49,25 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
                                           user_attributes: { name: name,
                                                               phone: phone } } }
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    ticket = assigns(:ticket)
+    assert_not ticket.activated?
+
+    # try to show ticket before activation
+    get ticket_path(ticket)
+    assert_redirected_to root_url
+
+    # Invalid activation token
+    get edit_ticket_activation_path("invalid token", t_id: ticket.id)
+    assert_not ticket.activated?
+
+    # Valid activation token
+    get edit_ticket_activation_path(ticket.activation_token, t_id: ticket.id)
+    assert ticket.reload.activated?
     follow_redirect!
     assert_template 'tickets/show'
-    assert_match title, response.body
-    assert_match content, response.body
-    assert assigns(:ticket).picture?
   end
-  
+
   test 'delete ticket' do
     get user_path(@user)
     assert_select 'a', text: 'delete'
@@ -66,8 +80,17 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'a', text: 'delete', count: 0
   end
 
-  test 'link to next ticket' do
-    get ticket_path(tickets(:one))
-    #tickets(:one).find_next
+  test 'should show not activ ticket on user index page' do
+    get user_path(@user)
+    ticket = tickets(:non_activated)
+    assert_match ticket.title, response.body
+  end
+  
+  test 'should not show not activ ticket on different user index page' do
+    sign_in users(:two)
+    users(:two).confirm
+    get user_path(@user)
+    ticket = tickets(:non_activated)
+    assert_no_match ticket.title, response.body
   end
 end

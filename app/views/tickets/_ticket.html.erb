@@ -8,6 +8,9 @@
          <% if current_user == ticket.user %>
            <%= link_to "delete", ticket, method: :delete %>
            <%= link_to "edit", edit_ticket_path(ticket) %>
+             <% unless ticket.activated? %>
+               This ticket is non active
+             <% end %>
          <% end %>
        </td>
        <td><%= ticket.price %></td>

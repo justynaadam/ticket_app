@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303211143) do
+ActiveRecord::Schema.define(version: 20170307092618) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "text"
@@ -23,14 +23,17 @@ ActiveRecord::Schema.define(version: 20170303211143) do
   create_table "tickets", force: :cascade do |t|
     t.text     "title"
     t.text     "content"
-    t.decimal  "price",       precision: 8, scale: 2
+    t.decimal  "price",             precision: 8, scale: 2
     t.string   "ticket_type"
     t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "location"
     t.integer  "category_id"
     t.string   "picture"
+    t.string   "activation_digest"
+    t.boolean  "activated"
+    t.datetime "activated_at"
     t.index ["category_id"], name: "index_tickets_on_category_id"
     t.index ["user_id", "created_at"], name: "index_tickets_on_user_id_and_created_at"
     t.index ["user_id", "id"], name: "index_tickets_on_user_id_and_id"

@@ -8,6 +8,19 @@ one:
   location: MyCity
   user: one
   category: subcategory_2
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+non_activated:
+  title: non activated
+  content: MyText
+  price: 9.99
+  ticket_type: paper
+  created_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>
+  location: MyCity
+  user: one
+  category: subcategory_2
 
 two:
   title: two
@@ -19,6 +32,8 @@ two:
   user: one
   location: MyCity
   category: subcategory_2
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 most_recent:
   title: Most recent
@@ -30,6 +45,8 @@ most_recent:
   user: one
   location: MyCity
   category: subcategory_2
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 other_user_ticket:
   title: other_user_ticket
@@ -41,3 +58,5 @@ other_user_ticket:
   user: two
   location: MyCity
   category: subcategory_1
+  activated: true
+  activated_at: <%= Time.zone.now %>

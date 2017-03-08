@@ -4,13 +4,14 @@ class TicketsController < ApplicationController
   before_action :update_contact, only: [:create, :update]
 
   def index
-    @tickets = Ticket.paginate(page: params[:page])
+    @tickets = Ticket.where(activated: true).paginate(page: params[:page])
   end
 
   def show
      @ticket = Ticket.find(params[:id])
      @next_ticket = @ticket.find_next(@ticket.updated_at, @ticket.category_id)
      @previous_ticket = @ticket.find_previous(@ticket.updated_at, @ticket.category_id)
+     redirect_to root_url and return unless @ticket.activated?
   end
 
   def new
@@ -20,8 +21,9 @@ class TicketsController < ApplicationController
   def create
     @ticket = current_user.tickets.build(ticket_params)
     if @ticket.save
-      flash[:success] = "Announcement added!"
-      redirect_to ticket_path(@ticket)
+      @ticket.send_activation_email
+      flash[:info] = "Please check your mail to activate your ticket."
+      redirect_to root_url
     else
       render 'new'
     end
@@ -53,8 +55,6 @@ class TicketsController < ApplicationController
     @user.validate_name = true
     redirect_back(fallback_location: root_path) unless @user.save
   end
-
-
   
   private
 

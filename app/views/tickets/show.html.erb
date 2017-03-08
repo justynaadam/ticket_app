@@ -40,9 +40,6 @@
 		</div>
 	</div>
 </div>
-
-
-
 <% if current_user == @ticket.user %>
   <%= link_to "delete", ticket_path(@ticket), method: :delete,
                         data: { confirm: "You sure?" } %>
