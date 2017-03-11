@@ -46,6 +46,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @user = current_user
+    unless @user.nil?
+      @tickets = @user.following.paginate(page: params[:page])
+    else
+      redirect_to root_path
+    end
+  end
 
   private
 

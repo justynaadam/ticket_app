@@ -11,6 +11,9 @@
              <% unless ticket.activated? %>
                This ticket is non active
              <% end %>
+         <% else %>
+            <% @ticket = ticket %>
+           <%= render 'tickets/follow_form' %>
          <% end %>
        </td>
        <td><%= ticket.price %></td>

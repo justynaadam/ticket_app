@@ -83,4 +83,14 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should follow and unfollow ticket' do
+    user = users(:one)
+    ticket = tickets(:other_user_ticket)
+    assert_not user.following?(ticket)
+    user.follow(ticket)
+    assert user.following?(ticket)
+    assert ticket.followers.include?(user)
+    user.unfollow(ticket)
+    assert_not user.following?(ticket)
+  end 
 end

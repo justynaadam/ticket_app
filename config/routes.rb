@@ -12,6 +12,11 @@ Rails.application.routes.draw do
       patch 'update_email'
     end
   end
+  resources :users do
+    member do
+      get :following
+    end
+  end
   namespace :admin do
     root to: "admin#index"
     resources :users, only: [:index, :show, :destroy]
@@ -19,4 +24,5 @@ Rails.application.routes.draw do
   resources :tickets
   resources :categories
   resources :ticket_activations, only: [:edit]
+  resources :relationships, only: [:create, :destroy]
 end

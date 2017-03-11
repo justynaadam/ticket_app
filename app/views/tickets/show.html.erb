@@ -37,6 +37,8 @@
 			  <p>Phone: <%= @ticket.user.phone %></p>
 			<% end %>
 			<a href="#" class="btn btn-default btn-block">Send message</a>
+			<hr>
+			<p>Followers: <%= @ticket.followers.count %></p>
 		</div>
 	</div>
 </div>
@@ -44,4 +46,6 @@
   <%= link_to "delete", ticket_path(@ticket), method: :delete,
                         data: { confirm: "You sure?" } %>
   <%= link_to "edit", edit_ticket_path(@ticket) %>
+<% else %>
+  <%= render 'follow_form' %>
 <% end %>

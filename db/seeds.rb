@@ -37,6 +37,17 @@ users = User.order(:created_at).take(6)
     user.tickets.create!(title: title, content: content,
                          price: price, ticket_type: ticket_type,
                          location: location, category_id: category_id,
-                         activated: true, activated_at: Time.zone.now) 
+                         activated: true, activated_at: Time.zone.now)
   end
 end
+tickets = Ticket.all
+ticket = Ticket.first
+users = User.all
+user = User.first
+following = tickets[51..60]
+followers = users[3..6]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(ticket) }
+img = File.open(File.join(Rails.root, 'app/assets/images/rails.png'))
+tickets = Ticket.all
+tickets[1..50].each { |tic| tic.update_attribute(:picture, img) }

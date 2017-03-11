@@ -1,6 +1,8 @@
 class Ticket < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  has_many :relationships, foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :relationships, source: :follower
   before_create :create_activation_digest
   mount_uploader :picture, PictureUploader
   attr_accessor :user_attributes, :activation_token

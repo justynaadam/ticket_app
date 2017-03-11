@@ -1,0 +1,8 @@
+one:
+  follower: two
+  followed: most_recent
+
+two:
+  follower: two
+  followed: one
+

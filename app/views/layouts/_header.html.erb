@@ -16,7 +16,7 @@
                <li><%= link_to "Settings", edit_user_path(current_user) %> </li>
                <li class="divider"></li>
                <li class="dropdown-header">Followed:</li>
-               <li><%= link_to "Announcements", "#" %> </li>
+               <li><%= link_to "Announcements", following_user_path(current_user) %> </li>
                <li><%= link_to "Search", "#" %> </li>
                <li class="divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>

@@ -15,4 +15,9 @@ end
                                       admin: true } }
     assert_not @user.reload.admin?
   end
+
+  test 'should redirect following when not logged in' do
+    get following_user_path(@user)
+    assert_redirected_to root_path
+  end
 end
