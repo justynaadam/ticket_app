@@ -6,7 +6,7 @@ class Ticket < ApplicationRecord
   before_create :create_activation_digest
   mount_uploader :picture, PictureUploader
   attr_accessor :user_attributes, :activation_token
-  default_scope -> { order(updated_at: :desc) }
+  #default_scope -> { order(updated_at: :desc) }
   validates :user_id, presence: true
   validates :title, presence: true, length: { maximum: 70 }
   validates :content, presence: true, length: { maximum: 4096 }
@@ -59,8 +59,15 @@ class Ticket < ApplicationRecord
   def activate
     update_attributes(activated: true, activated_at: Time.zone.now)
   end
-
-  private
+  
+  def self.activated
+    where(activated: true)
+  end
+  
+  def self.has_picture
+    where.not(picture: nil)
+  end
+      private
 
     def create_activation_digest
       self.activation_token = Ticket.new_token

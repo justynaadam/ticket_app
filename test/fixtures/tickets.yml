@@ -9,7 +9,7 @@ one:
   user: one
   category: subcategory_2
   activated: true
-  activated_at: <%= Time.zone.now %>
+  activated_at: <%= 10.minutes.ago %>
 
 non_activated:
   title: non activated
@@ -33,7 +33,7 @@ two:
   location: MyCity
   category: subcategory_2
   activated: true
-  activated_at: <%= Time.zone.now %>
+  activated_at: <%= 2.hours.ago %>
 
 most_recent:
   title: Most recent
@@ -59,4 +59,4 @@ other_user_ticket:
   location: MyCity
   category: subcategory_1
   activated: true
-  activated_at: <%= Time.zone.now %>
+  activated_at: <%= 30.minutes.ago %>

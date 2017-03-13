@@ -67,10 +67,6 @@ class TicketTest < ActiveSupport::TestCase
     assert_not @ticket.valid?
   end
 
-  test "order should be most recent first" do
-    assert_equal tickets(:most_recent), Ticket.first
-  end
-
   test "ticket should belongs to subcategory" do
     @ticket.category = categories(:main_category)
     assert_not @ticket.valid?

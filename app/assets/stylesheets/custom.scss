@@ -46,6 +46,12 @@ h2 {
   color: #777;
 }
 
+h5 {
+  font-size: 0.9em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -187,4 +193,24 @@ used to vertically center elements, may need modification if you're not using de
 .right {
   float: right;
   margin-right: 60px;
+}
+
+/* sort */
+.current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.asc {
+  background-image: url(/up_arrow.png);
+}
+
+.desc {
+  background-image: url(/down_arrow.png);
+}
+
+/* search */
+.gr {
+  background-color: $gray-lighter;
 }

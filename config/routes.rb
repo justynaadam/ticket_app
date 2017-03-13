@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'searches/new'
+
+  get 'searches/show'
+
   get 'categories/index'
 
   devise_for :users
-  root 'static_pages#home'
+  get '/home', to: 'static_pages#home'
   get '/help', to: 'static_pages#help'
   resources :users, only: [:show, :update, :edit, :destroy]
   get '/settings', to: 'users#edit'
@@ -25,4 +29,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :ticket_activations, only: [:edit]
   resources :relationships, only: [:create, :destroy]
+  resources :searches, only: [:new, :show, :create, :destroy]
+  root 'categories#index'
 end

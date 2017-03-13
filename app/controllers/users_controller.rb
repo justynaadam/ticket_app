@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
+  helper_method :sort_column, :sort_direction
   include UsersHelper
 
   def show
     @user = User.find(params[:id])
+    @user_id = @user.id
     if @user == current_user
-       @tickets = @user.tickets.paginate(page: params[:page])
+       @tickets = @user.tickets.order(sort_column + ' ' + sort_direction).paginate(page: params[:page])
     else
-      @tickets = Ticket.where(activated: true, user_id: @user.id).paginate(page: params[:page])
+      @tickets = Ticket.activated.where(user_id: @user.id).order(sort_column + ' ' + sort_direction).paginate(page: params[:page])
     end
   end
 

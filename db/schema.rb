@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309080625) do
+ActiveRecord::Schema.define(version: 20170313174634) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "text"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20170309080625) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.integer  "category_id"
+    t.float    "minimum_price"
+    t.float    "maximum_price"
+    t.string   "location_keywords"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "in_content",        default: false
+    t.boolean  "with_picture",      default: false
+    t.string   "type_of_ticket"
+    t.integer  "searched_user"
   end
 
   create_table "tickets", force: :cascade do |t|
