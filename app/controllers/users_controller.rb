@@ -56,6 +56,18 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def searches
+    @user = current_user
+    unless @user.nil?
+      @user_searches = @user.searches.paginate(page: params[:page])
+      render 'searches'
+    else
+      redirect_to root_path
+    end
+  end
+  
+  
 
   private
 

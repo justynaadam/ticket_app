@@ -21,6 +21,16 @@ class SearchesController < ApplicationController
     @search = Search.create(search_params)
     redirect_to @search
   end
+
+  def update
+    @search = Search.find(params[:id])
+    if @search.update_attribute(:user_id, params[:user_id])
+      flash[:success] = 'Search saved'
+      redirect_to @search
+    else
+      redirect_to root_path
+    end
+  end
   
   def destroy
     @search = Search.find(params[:id])
@@ -30,5 +40,9 @@ class SearchesController < ApplicationController
   def search_params
     params.require(:search).permit(:keywords, :location_keywords, :category_id, :minimum_price,
                                    :maximum_price, :in_content, :with_picture, :type_of_ticket, :searched_user)
+  end
+
+  def search_user_params
+    params.require(:search).permit(:user_id)
   end
 end

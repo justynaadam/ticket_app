@@ -17,7 +17,7 @@
                <li class="divider"></li>
                <li class="dropdown-header">Followed:</li>
                <li><%= link_to "Announcements", following_user_path(current_user) %> </li>
-               <li><%= link_to "Search", "#" %> </li>
+               <li><%= link_to "Search", searches_user_path(current_user) %> </li>
                <li class="divider"></li>
               <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
               </ul>

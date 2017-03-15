@@ -1,4 +1,5 @@
 class Search < ApplicationRecord
+  belongs_to :user, optional: true
 #before_save :destroy_all_searches
 
   #def destroy_all_searches

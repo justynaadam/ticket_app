@@ -28,7 +28,8 @@
   <%= f.text_field :minimum_price, :size => 7, placeholder: "price from"  %> -
   <%= f.text_field :maximum_price, :size => 7, placeholder: "price to" %>
   <p><p>
-  <%= f.submit "Search" %> (add_to_followed)
+  <%= f.submit "Search" %>  
   </p></p>
 <% end %>
+  <%= render 'save_search' %>
 </div>

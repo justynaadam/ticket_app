@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :following
+      get :searches
     end
   end
   namespace :admin do
@@ -29,6 +30,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :ticket_activations, only: [:edit]
   resources :relationships, only: [:create, :destroy]
-  resources :searches, only: [:new, :show, :create, :destroy]
+  resources :searches, only: [:new, :show, :update, :create, :destroy]
   root 'categories#index'
 end
