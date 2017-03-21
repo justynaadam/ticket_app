@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315101636) do
+ActiveRecord::Schema.define(version: 20170315190356) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "text"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170315101636) do
     t.string   "type_of_ticket"
     t.integer  "searched_user"
     t.integer  "user_id"
+    t.datetime "time"
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 

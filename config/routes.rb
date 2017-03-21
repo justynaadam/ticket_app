@@ -31,5 +31,10 @@ Rails.application.routes.draw do
   resources :ticket_activations, only: [:edit]
   resources :relationships, only: [:create, :destroy]
   resources :searches, only: [:new, :show, :update, :create, :destroy]
+  resources :searches do
+    member do
+      get :new_tickets
+    end
+  end
   root 'categories#index'
 end

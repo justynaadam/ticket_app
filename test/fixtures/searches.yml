@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  keywords: MyString
-  category_id: 71302273
+  keywords: One
+  category_id: 527304887
   minimum_price: 1.5
   maximum_price: 1.5
   location_keywords: MyString
 
 two:
-  keywords: MyString
-  category_id: 527304887
-  minimum_price: 1.5
-  maximum_price: 1.5
-  location_keywords: MyString
+  keywords: Two
+  user: two
+  time: <%= 10.minutes.ago %>

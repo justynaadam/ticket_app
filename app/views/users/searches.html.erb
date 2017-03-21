@@ -37,10 +37,15 @@
            <br>Type of ticket: <%= search.type_of_ticket %>
          <% end %>
            <br>Searched: <%= time_ago_in_words(search.created_at) %> ago.
-         <hr >
-           <%= link_to "Show new tickets", '#' %> &nbsp
-           <%= link_to "Show all tickets", search %> &nbsp
-           <%= link_to "delete", search, method: :delete %>
+           <hr >
+           <% if search.new_tickets.any? %>
+             <a class="btn btn-warning", href=<%=new_tickets_search_path(search) %>>Show new tickets
+             <span class="badge"><%= search.new_tickets.count %></span>
+             </a>&nbsp
+           <% else %>
+             <%= link_to "Show all tickets", search, class: "btn btn-primary"  %> &nbsp
+           <% end %>
+           <%= link_to "delete", search, method: :delete, class: "btn btn-danger" %>
            <hr >
          </tr>
     <% end %>

@@ -92,5 +92,14 @@ class UserTest < ActiveSupport::TestCase
     assert ticket.followers.include?(user)
     user.unfollow(ticket)
     assert_not user.following?(ticket)
-  end 
+  end
+
+  test 'associated searches should be destroyed' do
+    @user.save
+    search = @user.searches.build(keywords: 'Lorem ipsum')
+    search.save
+    assert_difference 'Search.count', -1 do
+      @user.destroy
+    end
+  end
 end

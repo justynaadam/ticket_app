@@ -1,14 +1,25 @@
 class Search < ApplicationRecord
   belongs_to :user, optional: true
-#before_save :destroy_all_searches
 
-  #def destroy_all_searches
-  #  Search.where(user_id: nil).destroy_all
- # end
+  before_create :destroy_all_searches
+
+  def destroy_all_searches
+    Search.where(user_id: nil).destroy_all
+  end
 
   def tickets
     @tickets ||= find_tickets
   end
+  
+  def update_time
+    update_attribute(:time, Time.zone.now)
+  end
+
+  def new_tickets
+    new_tickets = tickets.where('activated_at > ?', time)
+    new_tickets
+  end
+
 
   def find_tickets
     tickets = Ticket.activated

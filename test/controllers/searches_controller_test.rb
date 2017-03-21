@@ -10,5 +10,4 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
     get search_path(searches(:one))
     assert_response :success
   end
-
 end
