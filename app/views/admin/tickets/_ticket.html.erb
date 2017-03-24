@@ -1,0 +1,21 @@
+     <tr class="admin-tr">
+      <td class="admin-td"><%= link_to ticket.id, admin_ticket_path(ticket) %></td>
+      <td class="admin-td"><%= link_to ticket.title, admin_ticket_path(ticket) %></td>
+      <td class="admin-td"><%= link_to ticket.price, admin_ticket_path(ticket) %></td>
+      <td class="admin-td"><%= link_to ticket.ticket_type, admin_ticket_path(ticket) %></td>
+      <td class="admin-td"><%= link_to ticket.location, admin_ticket_path(ticket) %></td>
+      <td class="admin-td"><%= link_to ticket.picture, admin_ticket_path(ticket) if ticket.picture.present? %></td>
+      <td class="admin-td"><%= link_to ticket.created_at.to_s(:db), admin_ticket_path(ticket) if ticket.created_at.present?  %></td>
+      <td class="admin-td"><%= link_to ticket.updated_at.to_s(:db), admin_ticket_path(ticket) if ticket.updated_at.present? %></td>
+      <td class="admin-td"><%= link_to ticket.activated, admin_ticket_path(ticket)  if ticket.activated.present? %></td>
+      <td class="admin-td"><%= link_to ticket.activated_at.to_s(:db), admin_ticket_path(ticket) if ticket.activated_at.present? %></td>
+      <td class="admin-td"><%= link_to ticket.category.text, admin_category_path(ticket.category) %>
+                          main: <%= link_to ticket.category.main.text, admin_category_path(ticket.category.main) %></td>
+      <td class="admin-td"><%= link_to ticket.user_id, admin_user_path(ticket.user) %></td>
+      
+      <td                 ><%= link_to 'delete', admin_ticket_path(ticket), method: :delete %></td>
+  </tr>
+
+
+
+   

@@ -1,0 +1,45 @@
+  <% provide(:title, "Ticket") %>
+<div class="container">
+  <div class="row pricing">
+    <div class="col-md-10">
+		  <div class="well">
+			  <p>
+				  <%= link_to 'All categories', admin_categories_path %> |
+          <%= link_to @ticket.category.main.text, admin_category_path(@ticket.category.main) %> 
+          << <%= link_to @ticket.category.text, admin_category_path(@ticket.category) %>
+			  </p>
+			  <hr>
+				<% unless @previous_ticket.nil? %>
+          <p class="btn btn-default left"><%= link_to "previous", admin_ticket_path(@previous_ticket) %></p>
+        <% end %>
+        <% unless @next_ticket.nil? %>
+          <p class="btn btn-default right"><%= link_to "next", admin_ticket_path(@next_ticket) %></p>
+        <% end %>
+        <br><br>
+				<p class="center">
+				  <% if @ticket.picture? %>
+            <%= image_tag avatar_url(@ticket), size: 400 %>
+          <% end %>
+        </p>
+				<hr>
+				<p style="white-space: pre">Added: <%= @ticket.created_at.to_formatted_s(:long) %>      Location: <%= @ticket.location %>      type: <%= @ticket.ticket_type %></p>
+				<h1><b><%= @ticket.title %></b></h1>
+				<hr><%= @ticket.content %>
+			</div>
+		</div>
+	<div class="col-md-2">
+		<div class="well">
+			<h3><b><%= @ticket.price %></b></h3>
+			<hr>
+			<p><%= link_to @ticket.user.name, admin_user_path(@ticket.user) %></p>
+			<hr>
+			<% if @ticket.user.phone? %>
+			  <p>Phone: <%= @ticket.user.phone %></p>
+			<% end %>
+			<hr>
+			<p>Followers: <%= @ticket.followers.count %></p>
+		</div>
+	</div>
+</div>
+  <%= link_to "delete", admin_ticket_path(@ticket), method: :delete,
+                        data: { confirm: "You sure?" } %>

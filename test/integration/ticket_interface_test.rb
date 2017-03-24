@@ -1,33 +1,31 @@
 require 'test_helper'
 
 class TicketInterfaceTest < ActionDispatch::IntegrationTest
-
   def setup
     @user = users(:one)
     sign_in @user
     @user.confirm
     ActionMailer::Base.deliveries.clear
   end
-  
-  test 'ticket interface' do
 
+  test 'ticket interface' do
     get new_ticket_path
     assert_template 'tickets/new'
     assert_select 'input[type=file]'
     # Invalid ticket
     assert_no_difference 'Ticket.count' do
-    post tickets_path, params: { ticket: { title: '',
-                                           content: '',
-                                           ticket_type: '',
-                                           price: '',
-                                           location: '',
-                                           category_id: '',
-                                           user_attributes: { name: '',
-                                                              phone: '' } } }
+      post tickets_path, params: { ticket: { title: '',
+                                             content: '',
+                                             ticket_type: '',
+                                             price: '',
+                                             location: '',
+                                             category_id: '',
+                                             user_attributes: { name: '',
+                                                                phone: '' } } }
     end
   end
-    
-    test "valid ticket with ticket activation" do
+
+  test 'valid ticket with ticket activation' do
     get new_ticket_path
     title = 'title'
     content = 'content'
@@ -38,16 +36,16 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
     phone = 9999
     picture = fixture_file_upload('test/fixtures/image.png', 'image/png')
     assert_difference 'Ticket.count', 1 do
-    category = categories(:subcategory_2)
-    post tickets_path, params: { ticket: { title: title,
-                                          content: content,
-                                          ticket_type: ticket_type,
-                                          price: price,
-                                          location: location,
-                                          category_id: category.id,
-                                          picture: picture,
-                                          user_attributes: { name: name,
-                                                              phone: phone } } }
+      category = categories(:subcategory_2)
+      post tickets_path, params: { ticket: { title: title,
+                                             content: content,
+                                             ticket_type: ticket_type,
+                                             price: price,
+                                             location: location,
+                                             category_id: category.id,
+                                             picture: picture,
+                                             user_attributes: { name: name,
+                                                                phone: phone } } }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
     ticket = assigns(:ticket)
@@ -58,7 +56,7 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
 
     # Invalid activation token
-    get edit_ticket_activation_path("invalid token", t_id: ticket.id)
+    get edit_ticket_activation_path('invalid token', t_id: ticket.id)
     assert_not ticket.activated?
 
     # Valid activation token
@@ -85,7 +83,7 @@ class TicketInterfaceTest < ActionDispatch::IntegrationTest
     ticket = tickets(:non_activated)
     assert_match ticket.title, response.body
   end
-  
+
   test 'should not show not activ ticket on different user index page' do
     sign_in users(:two)
     users(:two).confirm

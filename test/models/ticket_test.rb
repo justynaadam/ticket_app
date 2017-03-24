@@ -1,22 +1,21 @@
 require 'test_helper'
 
 class TicketTest < ActiveSupport::TestCase
-
   def setup
     @user = users(:one)
     @user.confirm
-    @ticket = @user.tickets.build(title: 'Lorem ipsum', 
+    @ticket = @user.tickets.build(title: 'Lorem ipsum',
                                   content: 'Lorem ipsum dolor sit amet',
                                   price: 100,
                                   ticket_type: 'paper',
                                   location: 'Location')
     @ticket.category = categories(:one)
   end
-  
+
   test 'should be vaild' do
     assert @ticket.valid?
   end
-  
+
   test 'user should be present' do
     @ticket.user_id = nil
     assert_not @ticket.valid?
@@ -26,7 +25,7 @@ class TicketTest < ActiveSupport::TestCase
     @ticket.title = '    '
     assert_not @ticket.valid?
   end
-  
+
   test 'title should be at most 70 characters' do
     @ticket.title = 'a' * 71
     assert_not @ticket.valid?
@@ -57,17 +56,17 @@ class TicketTest < ActiveSupport::TestCase
     assert_not @ticket.valid?
   end
 
-   test 'location should not be too long' do
+  test 'location should not be too long' do
     @ticket.location = 'a' * 51
     assert_not @ticket.valid?
   end
 
-   test 'location should not be blank' do
+  test 'location should not be blank' do
     @ticket.location = ' ' * 5
     assert_not @ticket.valid?
   end
 
-  test "ticket should belongs to subcategory" do
+  test 'ticket should belongs to subcategory' do
     @ticket.category = categories(:main_category)
     assert_not @ticket.valid?
   end

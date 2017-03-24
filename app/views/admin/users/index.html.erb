@@ -1,8 +1,19 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
-
-<%= will_paginate %>
-   <ul class="users">
+<table style="width:100%" border="1|0">
+   <%= will_paginate %>
+  <tr>
+      <th><%= sortable('id', 'id', 'users') %></th>
+      <th><%= sortable('email', 'email', 'users') %> </th>
+      <th><%= sortable('name', 'name', 'users') %></th>
+      <th><%= sortable('phone', 'phone', 'users') %> </th>
+      <th><%= sortable('admin', 'admin', 'users') %></th>
+      <th><%= sortable('created_at', 'created_at', 'users') %> </th>
+      <th><%= sortable('updated_at', 'updated_at', 'users') %> </th>
+      <th><%= sortable('confirmed_at', 'confirmed_at', 'users') %> </th>
+      <th><%= sortable('unconfirmed_email', 'unconfirmed_email', 'users') %></th>
+      <th>action</th>
+  </tr>
      <%= render @users %>
-   </ul>
+</table>
 <%= will_paginate %>

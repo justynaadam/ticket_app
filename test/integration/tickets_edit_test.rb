@@ -1,13 +1,12 @@
 require 'test_helper'
 
 class TicketsEditTest < ActionDispatch::IntegrationTest
-
   def setup
     @ticket = tickets(:one)
     @user = users(:one)
     @other_user = users(:two)
   end
-  
+
   test 'unsuccessful edit' do
     sign_in @user
     @user.confirm

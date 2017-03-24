@@ -1,5 +1,4 @@
 class TicketActivationsController < ApplicationController
-
   def edit
     ticket = Ticket.find(params[:t_id])
     if ticket && !ticket.activated? && ticket.authenticated?(params[:id])

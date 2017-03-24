@@ -3,7 +3,7 @@
 <h1>Update your announcement</h1>
 <div class="center">
 <% if @ticket.picture? %>
-  <%= image_tag @ticket.picture.url %>
+  <%= image_tag avatar_url(@ticket), size: 400 %>
 <% end %>
 </div>
 <%= render 'ticket_form' %>

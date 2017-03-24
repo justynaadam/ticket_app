@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column_tickets, :sort_direction
   include UsersHelper
 
   def show
     @user = User.find(params[:id])
     @user_id = @user.id
     if @user == current_user
-       @tickets = @user.tickets.order(sort_column + ' ' + sort_direction).paginate(page: params[:page])
+      @tickets = @user.tickets.order(sort_column_tickets + ' ' + sort_direction).paginate(page: params[:page])
     else
-      @tickets = Ticket.activated.where(user_id: @user.id).order(sort_column + ' ' + sort_direction).paginate(page: params[:page])
+      @tickets = Ticket.activated.where(user_id: @user.id).order(sort_column_tickets + ' ' + sort_direction).paginate(page: params[:page])
     end
   end
 
@@ -50,36 +50,34 @@ class UsersController < ApplicationController
 
   def following
     @user = current_user
-    unless @user.nil?
-      @tickets = @user.following.paginate(page: params[:page])
-    else
+    if @user.nil?
       redirect_to root_path
+    else
+      @tickets = @user.following.paginate(page: params[:page])
     end
   end
-  
+
   def searches
     @user = current_user
-    unless @user.nil?
+    if @user.nil?
+      redirect_to root_path
+    else
       @user_searches = @user.searches.paginate(page: params[:page])
       render 'searches'
-    else
-      redirect_to root_path
     end
   end
-  
-  
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :phone)
-    end
+  def user_params
+    params.require(:user).permit(:name, :phone)
+  end
 
-    def user_password_params
-      params.require(:user).permit(:password, :password_confirmation, :current_password)
-    end
+  def user_password_params
+    params.require(:user).permit(:password, :password_confirmation, :current_password)
+  end
 
-    def user_email_params
-      params.require(:user).permit(:email)
-    end
+  def user_email_params
+    params.require(:user).permit(:email)
+  end
 end

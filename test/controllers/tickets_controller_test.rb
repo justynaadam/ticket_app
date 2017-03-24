@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TicketsControllerTest < ActionDispatch::IntegrationTest
-
   def setup
     @ticket = tickets(:one)
     @other_ticket = tickets(:other_user_ticket)
@@ -14,11 +13,11 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should redirect create when not logged in' do
     assert_no_difference 'Ticket.count' do
-      post tickets_path, params: { ticket: { title: 'Lorem ipsum', 
-                                            content: 'Lorem ipsum dolor sit amet',
-                                            price: 100,
-                                            ticket_type: 'paper' } }
-      end
+      post tickets_path, params: { ticket: { title: 'Lorem ipsum',
+                                             content: 'Lorem ipsum dolor sit amet',
+                                             price: 100,
+                                             ticket_type: 'paper' } }
+    end
     assert_redirected_to new_user_session_path
   end
 
@@ -33,7 +32,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
     assert_not_equal @ticket.reload.title, new_title
   end
-  
+
   test 'should redirect destroy when not logged in' do
     assert_no_difference 'Ticket.count' do
       delete ticket_path(@ticket)
@@ -52,7 +51,7 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
   test 'should find previous ticket' do
     ticket = tickets(:one)
     previous_t = ticket.find_previous(ticket.updated_at, ticket.category_id)
-    #assert previous_t == tickets(:most_recent)
+    # assert previous_t == tickets(:most_recent)
   end
 
   test 'should find next ticket' do

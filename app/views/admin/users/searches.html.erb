@@ -1,0 +1,56 @@
+<%= render 'table_show' %>
+<div class="panel panel-default panel-table">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col col-xs-6">
+        <h3 class="panel-title"><%= @user.name %></h3>
+        <br>Following searches
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped table-bordered table-list">
+      <tbody>
+       <% @user_searches.each do |search| %>
+          <tr>
+         <% if search.keywords.present? %>
+           <br>Keywords: <%= search.keywords %>
+         <% end %>
+         <% if search.in_content? %>   
+           <br> searched in content 
+         <% end %>
+         <% if search.with_picture? %> 
+           <br> only with picture 
+         <% end %>
+         <% if search.location_keywords.present? %>
+           <br>Location: <%= search.location_keywords%>
+         <% end %>
+         <% if search.category_id.present? %>
+           <br>Category: <%= Category.find(search.category_id).text %>
+         <% end %>
+         <% if search.minimum_price.present? %>
+           <br>Price from: <%= search.minimum_price %>
+         <% end %>
+         <% if search.maximum_price.present? %>
+           <br>Price to: <%= search.maximum_price%>
+         <% end %>
+         <% if search.type_of_ticket.present? %>
+           <br>Type of ticket: <%= search.type_of_ticket %>
+         <% end %>
+           <br>Searched: <%= time_ago_in_words(search.created_at) %> ago.
+           <hr >
+           <% if search.new_tickets.any? %>
+             <a class="btn btn-warning", href=<%=new_tickets_admin_search_path(search) %>>Show new tickets
+             <span class="badge"><%= search.new_tickets.count %></span>
+             </a>&nbsp
+           <% else %>
+             <%= link_to "Show all tickets", admin_search_path(search), class: "btn btn-primary"  %> &nbsp
+           <% end %>
+           <%= link_to "delete", admin_search_path(search), method: :delete, class: "btn btn-danger" %>
+           <hr >
+         </tr>
+    <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

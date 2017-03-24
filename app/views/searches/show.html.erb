@@ -12,8 +12,8 @@
 <% end %>
     <table class="table table-striped table-bordered table-list">
       <%= will_paginate @tickets %>
-      <h5> Sort by: <%= sortable('activated_at', 'latest') %>
-                    <%= sortable('price', 'price') %>
+      <h5> Sort by: <%= sortable('activated_at', 'latest', 'tickets') %>
+                    <%= sortable('price', 'price', 'tickets') %>
       </h5>
       <tbody>
         <%= render @tickets %>

@@ -1,5 +1,4 @@
 class TicketMailer < ApplicationMailer
-
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
@@ -7,6 +6,6 @@ class TicketMailer < ApplicationMailer
   #
   def ticket_activation(ticket)
     @ticket = ticket
-    mail to: ticket.user.email, subcject: "Ticket activation"
+    mail to: ticket.user.email, subcject: 'Ticket activation'
   end
 end

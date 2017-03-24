@@ -1,5 +1,4 @@
 module UsersHelper
-
   def resource_name
     :user
   end
@@ -17,4 +16,3 @@ module UsersHelper
     redirect_to edit_user_path(@user)
   end
 end
- 

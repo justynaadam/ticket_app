@@ -1,3 +1,13 @@
-<li>
-  <%= link_to user.email, admin_user_path(user) %> | <%= link_to "delete", admin_user_path(user), method: :delete, data: { confirm: "You sure?" } %>
-</li>
+  <tr class="admin-tr">
+      <td class="admin-td"><%= link_to user.id, admin_user_path(user) %></td>
+      <td class="admin-td"><%= link_to user.email, admin_user_path(user) %></td>
+      <td class="admin-td"><%= link_to user.name, admin_user_path(user) if user.name.present? %></td>
+      <td class="admin-td"><%= link_to user.phone, admin_user_path(user)  if user.phone.present? %></td>
+      <td class="admin-td"><%= link_to user.admin, admin_user_path(user) if user.admin.present? %></td>
+      <td class="admin-td"><%= link_to user.created_at.to_s(:db), admin_user_path(user)  if user.created_at.present? %></td>
+      <td class="admin-td"><%= link_to user.updated_at.to_s(:db), admin_user_path(user)   if user.updated_at.present? %></td>
+      <td class="admin-td"><%= link_to user.confirmed_at.to_s(:db), admin_user_path(user)   if user.confirmed_at.present? %></td>
+      <td class="admin-td"><%= link_to user.unconfirmed_email, admin_user_path(user) if user.unconfirmed_email.present? %></td>
+      <td                 ><%= link_to 'delete', admin_user_path(user), method: :delete %></td>
+  </tr>
+

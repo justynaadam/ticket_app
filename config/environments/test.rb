@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
-  #host = 'ticket-market-somethingtimeless.c9users.io'
-  #config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+
+  # host = 'ticket-market-somethingtimeless.c9users.io'
+  # config.action_mailer.default_url_options = { host: host, protocol: 'https' }
 end

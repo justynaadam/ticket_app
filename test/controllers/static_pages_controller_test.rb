@@ -1,9 +1,8 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  
   def setup
-    @base_title = "Ticket Market"
+    @base_title = 'Ticket Market'
   end
 
   test 'should get home' do

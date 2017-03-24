@@ -10,4 +10,3 @@ class ActiveSupport::TestCase
   include ApplicationHelper
   include Devise::Test::IntegrationHelpers
 end
-

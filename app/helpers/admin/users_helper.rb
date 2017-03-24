@@ -1,5 +1,4 @@
 module Admin::UsersHelper
-
   def resource_name
     :user
   end

@@ -1,0 +1,28 @@
+<%= render 'searches/search_form' %>
+      <h5> Sort by: <%= sortable('activated_at', 'latest', 'tickets') %>
+                    <%= sortable('price', 'price', 'tickets') %>
+      </h5>
+      <%= @category.text %> <%= link_to 'edit', edit_admin_category_path(@category) %>
+      <%= link_to 'delete', admin_category_path(@category), method: :delete %>
+<div class="panel panel-default panel-table">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col col-xs-6">
+        <h3 class="panel-title"><%= link_to 'All categories', categories_path %> |
+        <% if @category.main? %>
+          <%= @category.text %> >>
+          <% @category.subcategories.each do |subcategory| %>
+            <%= link_to subcategory.text, admin_category_path(subcategory) %>  
+          <% end %>
+       <% else %>
+         <%= link_to @category.main.text, admin_category_path(@category.main) %> << <%= @category.text %>
+      <% end %>
+      </h3>
+      </div>
+    </div>
+  </div>
+ <div class="panel-body">
+   
+        <%= render 'admin/tickets/ticket_columns' %>
+     
+  </div>

@@ -1,0 +1,33 @@
+<%= render 'searches/simple_search' %>
+<div class="cat">
+<% @categories.each do |main| %>
+<div class="btn btn-default">
+<table>
+  <thead> 
+    <tr>
+     <td class="centert" colspan=<%="#{main.subcategories.count}"%>> 
+       <%= link_to main.text, admin_category_path(main) %>
+     </td>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <% main.subcategories.each do |subcategory| %>
+      <td class="centert"><%= link_to subcategory.text, admin_category_path(subcategory) %> 
+      </td>
+        <% end %>
+      </tr>
+      </tbody>
+   </table>
+   </div>
+<% end %>
+<%= link_to 'Add category', new_admin_category_path, class: "btn btn-default" %>
+</div>
+  <h3> LATEST TICKETS</h3>
+  <%= render 'admin/tickets/ticket_columns' %>
+
+
+
+
+

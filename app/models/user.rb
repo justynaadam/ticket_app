@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :tickets, dependent: :destroy
-  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :relationships, foreign_key: 'follower_id', dependent: :destroy
   has_many :following, through: :relationships, source: :followed
   has_many :searches, dependent: :destroy
-  
+
   validates :name, length: { maximum: 50 }, presence: true, allow_nil: true
   validates :name, presence: true, if: :validate_name?
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

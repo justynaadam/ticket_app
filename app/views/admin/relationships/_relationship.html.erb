@@ -1,0 +1,9 @@
+  <tr class="admin-tr">
+      <td class="admin-td"><%= relationship.id %></td>
+      <td class="admin-td"><%= relationship.created_at %></td>
+      <td class="admin-td"><%= relationship.updated_at %></td>
+      <td class="admin-td"><%= link_to relationship.follower_id, admin_user_path(relationship.follower_id) %></td>
+      <td class="admin-td"><%= link_to relationship.followed_id, admin_ticket_path(relationship.followed_id) %></td>
+      <td                 ><%= link_to 'delete', admin_relationship_path(relationship), method: :delete %></td>
+  </tr>
+

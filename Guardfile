@@ -2,7 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 # Defines the matching rules for Guard.
-guard :minitest, spring: "bin/rails test", all_on_start: false do
+guard :minitest, spring: 'bin/rails test', all_on_start: false do
   watch(%r{^test/(.*)/?(.*)_test\.rb$})
   watch('test/test_helper.rb') { 'test' }
   watch('config/routes.rb')    { integration_tests }
@@ -14,7 +14,7 @@ guard :minitest, spring: "bin/rails test", all_on_start: false do
   end
   watch(%r{^app/views/([^/]*?)/.*\.html\.erb$}) do |matches|
     ["test/controllers/#{matches[1]}_controller_test.rb"] +
-    integration_tests(matches[1])
+      integration_tests(matches[1])
   end
   watch(%r{^app/helpers/(.*?)_helper\.rb$}) do |matches|
     integration_tests(matches[1])
@@ -34,14 +34,14 @@ guard :minitest, spring: "bin/rails test", all_on_start: false do
   end
   watch(%r{app/views/users/*}) do
     resource_tests('users') +
-    ['test/integration/microposts_interface_test.rb']
+      ['test/integration/microposts_interface_test.rb']
   end
 end
 
 # Returns the integration tests corresponding to the given resource.
 def integration_tests(resource = :all)
   if resource == :all
-    Dir["test/integration/*"]
+    Dir['test/integration/*']
   else
     Dir["test/integration/#{resource}_*.rb"]
   end

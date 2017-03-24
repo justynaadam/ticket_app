@@ -18,7 +18,7 @@
         <br><br>
 				<p class="center">
 				  <% if @ticket.picture? %>
-            <%= image_tag @ticket.picture.url %>
+            <%= image_tag avatar_url(@ticket), size: 400 %>
           <% end %>
         </p>
 				<hr>
@@ -36,7 +36,6 @@
 			<% if @ticket.user.phone? %>
 			  <p>Phone: <%= @ticket.user.phone %></p>
 			<% end %>
-			<a href="#" class="btn btn-default btn-block">Send message</a>
 			<hr>
 			<p>Followers: <%= @ticket.followers.count %></p>
 		</div>

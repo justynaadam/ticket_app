@@ -1,0 +1,10 @@
+<table>
+  <% User.column_names.each do |column_name| %>
+  <tr> <td><%= column_name %></td>
+  <td><%= @user.send(column_name) %></td></tr>
+  <% end %>
+</table>
+ <%= link_to 'delete user', admin_user_path(@user), method: :delete %>
+ <%= link_to 'user tickets', admin_user_path(@user) %>
+ <%= link_to 'user following tickets', following_admin_user_path(@user) %>
+ <%= link_to 'user searches', searches_admin_user_path(@user) %>

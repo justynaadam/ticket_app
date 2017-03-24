@@ -1,6 +1,5 @@
 require 'test_helper'
 class UsersSignupTest < ActionDispatch::IntegrationTest
-
   def setup
     Devise.mailer.deliveries.clear
   end
@@ -14,7 +13,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'devise/registrations/new'
   end
-  
+
   test 'valid signup information with acctivation' do
     get new_user_registration_path
     assert_difference 'User.count', 1 do

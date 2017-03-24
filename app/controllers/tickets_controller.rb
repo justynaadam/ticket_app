@@ -8,10 +8,10 @@ class TicketsController < ApplicationController
   end
 
   def show
-     @ticket = Ticket.find(params[:id])
-     @next_ticket = @ticket.find_next(@ticket.updated_at, @ticket.category_id)
-     @previous_ticket = @ticket.find_previous(@ticket.updated_at, @ticket.category_id)
-     redirect_to root_url and return unless @ticket.activated?
+    @ticket = Ticket.find(params[:id])
+    @next_ticket = @ticket.find_next(@ticket.updated_at, @ticket.category_id)
+    @previous_ticket = @ticket.find_previous(@ticket.updated_at, @ticket.category_id)
+    redirect_to(root_url) && return unless @ticket.activated?
   end
 
   def new
@@ -22,16 +22,14 @@ class TicketsController < ApplicationController
     @ticket = current_user.tickets.build(ticket_params)
     if @ticket.save
       @ticket.send_activation_email
-      flash[:info] = "Please check your mail to activate your ticket."
+      flash[:info] = 'Please check your mail to activate your ticket.'
       redirect_to root_url
     else
       render 'new'
     end
   end
 
-  def edit
-    #@ticket = Ticket.find(params[:id])
-  end
+  def edit; end
 
   def update
     if @ticket.update_attributes(ticket_params)
@@ -55,15 +53,15 @@ class TicketsController < ApplicationController
     @user.validate_name = true
     redirect_back(fallback_location: root_path) unless @user.save
   end
-  
+
   private
 
-      def ticket_params
-        params.require(:ticket).permit(:title, :content, :price, :ticket_type, :location, :category_id, :picture, user_attributes: [:name, :phone])
-      end
-     
-      def correct_user
-        @ticket = current_user.tickets.find_by(id: params[:id])
-        redirect_to root_url if @ticket.nil?
-      end
+  def ticket_params
+    params.require(:ticket).permit(:title, :content, :price, :ticket_type, :location, :category_id, :picture, user_attributes: [:name, :phone])
+  end
+
+  def correct_user
+    @ticket = current_user.tickets.find_by(id: params[:id])
+    redirect_to root_url if @ticket.nil?
+  end
 end
