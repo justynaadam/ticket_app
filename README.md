@@ -1,4 +1,4 @@
-Ticket Market
+# Ticket Market
 It is Ruby on Rails application dedicated to announcements with tickets.
 App allows you to:
 - display tickets by category, search tickets by criteria, sort displayed tickets
