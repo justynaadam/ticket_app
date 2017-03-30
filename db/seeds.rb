@@ -6,10 +6,15 @@ t_subcategories = %w(bus train plane)
 t_subcategories.each { |t_subcategory| Category.create!(text: t_subcategory, main_id: 2) }
 
 User.create!(name: 'Admin Name',
-             phone: 123_123,
+             phone: 123123,
              email: 'example@foobar.org',
              password:    'foobar',
              admin: true)
+
+User.create!(name: 'Sample Name',
+             phone: 123456,
+             email: 'sample@foobar.org',
+             password:    'foobar')
 
 99.times do |n|
   email = "example-#{n + 1}@foobar.org"
@@ -25,8 +30,8 @@ end
 users = User.all
 users.each(&:confirm)
 
-users = User.order(:created_at).all[2..11]
-40.times do
+users = User.order(:created_at).all[2..30] << User.find_by(email: 'sample@foobar.org')
+5.times do
   title = Faker::Lorem.sentence(1)
   content = Faker::Lorem.sentence(10)
   price = Faker::Number.number(3)
@@ -40,15 +45,15 @@ users = User.order(:created_at).all[2..11]
                          activated: true, activated_at: Time.zone.now)
     search = Search.create!(keywords: title.split[0], location_keywords: location, maximum_price: price,
                             category_id: category_id, in_content: true)
-    search.update_attributes(user_id: user.id, time: Time.zone.now)
+    search.update_attributes(user_id: user.id, time: 10.minutes.ago)
   end
 end
 tickets = Ticket.all
 ticket = Ticket.first
 users = User.all
 user = User.first
-following = tickets[51..60]
-followers = users[3..6]
+following = tickets[1..40]
+followers = users[10..20] << User.find_by(email: 'sample@foobar.org')
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(ticket) }
 tickets = Ticket.all
