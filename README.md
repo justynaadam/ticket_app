@@ -11,7 +11,7 @@ It is Ruby on Rails application dedicated to announcements with tickets.
 - display and delete: users, tickets, following relationships, searches
 - create, edit and delete ticket categories
 
-ruby: 2.3
+[ruby: 2.3]
 rails: 5.0.1
 app on heroku: [murmuring-garden-20629.herokuapp.com](http://murmuring-garden-20629.herokuapp.com)
 sample user: sample@foobar.org, pas: foobar
