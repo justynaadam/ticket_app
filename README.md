@@ -15,3 +15,5 @@ ruby: 2.3
 rails: 5.0.1
 app on heroku: murmuring-garden-20629.herokuapp.com
 sample user: sample@foobar.org, pas: foobar
+
+[*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book)
