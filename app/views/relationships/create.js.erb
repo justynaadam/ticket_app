@@ -1,2 +1,1 @@
-$("#follow_form").html("<%= escape_javascript(render('tickets/unfollow')) %>");
-$("#followers").html('<%= @ticket.followers.count %>');
+$("#follow_form-<%= @ticket.id %>").html("<%= escape_javascript(render('tickets/unfollow')) %>");

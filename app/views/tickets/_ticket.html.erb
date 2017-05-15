@@ -1,4 +1,4 @@
-    <tr>
+    <tr id=<%= ticket.id %>>
        <td class="hidden-xs"><%= image_tag avatar_url(ticket), size: 120 if ticket.picture? %></td>
        <td><%= link_to ticket.title, ticket_path(ticket) %>
          <br><%= ticket.category.main.text %> > <%= ticket.category.text%>

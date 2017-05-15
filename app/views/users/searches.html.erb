@@ -12,6 +12,7 @@
       <tbody>
        <% @user_searches.each do |search| %>
           <tr>
+          <div id= <%= search.id %> >
          <% if search.keywords.present? %>
            <br>Keywords: <%= search.keywords %>
          <% end %>
@@ -45,8 +46,9 @@
            <% else %>
              <%= link_to "Show all tickets", search, class: "btn btn-primary"  %> &nbsp
            <% end %>
-           <%= link_to "delete", search, method: :delete, class: "btn btn-danger" %>
+           <%= link_to "delete", search, method: :delete, class: "btn btn-danger", id: search.id, remote: true %>
            <hr >
+           </div>
          </tr>
     <% end %>
       </tbody>

@@ -32,8 +32,13 @@ class SearchesController < ApplicationController
     if params[:user_id] == current_user.id.to_s
       @search.update_attribute(:user_id, params[:user_id])
       @search.update_time
-      flash[:success] = 'Search saved'
-      redirect_to @search
+      respond_to do |format|
+        format.html { 
+          redirect_to @search
+          flash[:success] = 'Search saved'
+          }
+        format.js
+      end
     else
       redirect_to root_path
     end
@@ -42,7 +47,10 @@ class SearchesController < ApplicationController
   def destroy
     if current_user.searches.include?(@search)
       @search.destroy
-      redirect_to searches_user_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to searches_user_path(current_user) }
+        format.js
+      end
     else
       redirect_to root_path
     end

@@ -1,4 +1,4 @@
-<div id="follow_form">
+<div id="follow_form-<%= @ticket.id %>">
 <% if current_user %>
   <% if current_user.following?(@ticket) %>
     <%= render 'tickets/unfollow' %>
