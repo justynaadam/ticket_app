@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -22,6 +24,6 @@ class ApplicationController < ActionController::Base
   end
 
   def sort_direction
-    %w(asc desc).include?(params[:direction]) ? params[:direction] : 'desc'
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
   end
 end

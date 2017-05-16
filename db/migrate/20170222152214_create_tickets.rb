@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTickets < ActiveRecord::Migration[5.0]
   def change
     create_table :tickets do |t|
@@ -9,6 +11,6 @@ class CreateTickets < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :tickets, [:user_id, :created_at]
+    add_index :tickets, %i[user_id created_at]
   end
 end

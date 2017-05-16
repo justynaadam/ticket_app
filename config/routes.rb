@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'categories#index'
   devise_for :users
   get '/home', to: 'static_pages#home'
   get '/help', to: 'static_pages#help'
-  resources :users, only: [:show, :update, :edit] do
+  resources :users, only: %i[show update edit] do
     member do
       get :following
       get :searches
@@ -17,10 +19,10 @@ Rails.application.routes.draw do
     end
   end
   resources :tickets
-  resources :categories, only: [:index, :show]
+  resources :categories, only: %i[index show]
   resources :ticket_activations, only: [:edit]
-  resources :relationships, only: [:create, :destroy]
-  resources :searches, only: [:new, :show, :update, :create, :destroy] do
+  resources :relationships, only: %i[create destroy]
+  resources :searches, only: %i[new show update create destroy] do
     member do
       get :new_tickets
     end
@@ -28,16 +30,16 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'admin#index'
-    resources :users, only: [:index, :show, :destroy] do
+    resources :users, only: %i[index show destroy] do
       member do
         get :following
         get :searches
       end
     end
-    resources :tickets, only: [:index, :show, :destroy]
+    resources :tickets, only: %i[index show destroy]
     resources :categories
-    resources :relationships, only: [:index, :destroy]
-    resources :searches, only: [:index, :show, :destroy] do
+    resources :relationships, only: %i[index destroy]
+    resources :searches, only: %i[index show destroy] do
       member do
         get :new_tickets
       end

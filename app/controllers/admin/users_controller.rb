@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::UsersController < Admin::AdminController
   include UsersHelper
   helper_method :sort_column_users, :sort_direction, :sort_column_tickets

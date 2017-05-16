@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::RelationshipsController < Admin::AdminController
   helper_method :sort_column_relationships, :sort_direction
 

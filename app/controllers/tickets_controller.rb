@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class TicketsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :update_contact, only: [:create, :update]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :correct_user, only: %i[edit update destroy]
+  before_action :update_contact, only: %i[create update]
 
   def index
     @tickets = Ticket.where(activated: true).paginate(page: params[:page])
@@ -57,7 +59,7 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:title, :content, :price, :ticket_type, :location, :category_id, :picture, user_attributes: [:name, :phone])
+    params.require(:ticket).permit(:title, :content, :price, :ticket_type, :location, :category_id, :picture, user_attributes: %i[name phone])
   end
 
   def correct_user

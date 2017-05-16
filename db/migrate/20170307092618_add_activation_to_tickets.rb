@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddActivationToTickets < ActiveRecord::Migration[5.0]
   def change
     add_column :tickets, :activation_digest, :string

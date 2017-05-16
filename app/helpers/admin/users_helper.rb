@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin::UsersHelper
   def resource_name
     :user

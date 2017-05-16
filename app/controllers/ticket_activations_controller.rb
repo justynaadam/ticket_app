@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TicketActivationsController < ApplicationController
   def edit
     ticket = Ticket.find(params[:t_id])

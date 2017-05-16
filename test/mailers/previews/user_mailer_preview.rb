@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Preview all emails at https://ticket-market-somethingtimeless.c9users.io/rails/mailers/user_mailer
 class UserMailerPreview < ActionMailer::Preview
   # Preview at https://ticket-market-somethingtimeless.c9users.io/rails/mailers/user_mailer/confirmation_instructions

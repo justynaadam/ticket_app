@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::CategoriesController < Admin::AdminController
   helper_method :sort_column_tickets, :sort_direction
 

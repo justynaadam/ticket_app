@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class SearchesController < ApplicationController
   helper_method :sort_column_tickets, :sort_direction
-  before_action :authenticate_user!, only: [:update, :destroy]
-  before_action :get_search_or_redirect, only: [:show, :new_tickets, :update, :destroy]
+  before_action :authenticate_user!, only: %i[update destroy]
+  before_action :get_search_or_redirect, only: %i[show new_tickets update destroy]
 
   def new
     @search = Search.new
@@ -33,10 +35,10 @@ class SearchesController < ApplicationController
       @search.update_attribute(:user_id, params[:user_id])
       @search.update_time
       respond_to do |format|
-        format.html { 
+        format.html do
           redirect_to @search
           flash[:success] = 'Search saved'
-          }
+        end
         format.js
       end
     else

@@ -1,18 +1,20 @@
-main_categories = %w(event travel)
+# frozen_string_literal: true
+
+main_categories = %w[event travel]
 main_categories.each { |main_category| Category.create!(text: main_category) }
-e_subcategories = %w(sport music cinema thetre)
+e_subcategories = %w[sport music cinema thetre]
 e_subcategories.each { |e_subcategory| Category.create!(text: e_subcategory, main_id: 1) }
-t_subcategories = %w(bus train plane)
+t_subcategories = %w[bus train plane]
 t_subcategories.each { |t_subcategory| Category.create!(text: t_subcategory, main_id: 2) }
 
 User.create!(name: 'Admin Name',
-             phone: 123123,
+             phone: 123_123,
              email: 'example@foobar.org',
              password:    'foobar',
              admin: true)
 
 User.create!(name: 'Sample Name',
-             phone: 123456,
+             phone: 123_456,
              email: 'sample@foobar.org',
              password:    'foobar')
 
