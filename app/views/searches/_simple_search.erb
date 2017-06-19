@@ -1,9 +1,0 @@
-<div class="gr" >
-<%= form_for(:search, url: searches_path(:search)) do |f| %>
-  <div class="col-12 centert">
-    <%= f.text_field :keywords, placeholder: " add keywords here...", size: 60 %>
-    <%= f.text_field :location_keywords, placeholder: " Location ", size: 40  %>
-    <%= f.submit "Search" %> 
-  </div>
-<% end %>
-</div>

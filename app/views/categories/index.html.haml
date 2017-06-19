@@ -1,0 +1,19 @@
+= render 'searches/simple_search'
+%div.cat
+  - @categories.each do |main|
+    %div.btn.btn-default
+      %table
+        %thead
+          %tr
+            %td.centert{colspan: main.subcategories.count}
+              = link_to main.text, category_path(main)
+        %tbody
+          %tr
+          - main.subcategories.each do |subcategory|
+            %td.centert
+              = link_to subcategory.text, category_path(subcategory)
+%table.table.table-striped.table-bordered.table-list
+  %h3
+    LATEST TICKETS
+  %tbody
+    = render @tickets

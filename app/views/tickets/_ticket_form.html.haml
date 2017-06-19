@@ -1,0 +1,42 @@
+%div.row
+  %div.col-md-6.col-md-offset-3
+    = form_for @ticket do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.label :title
+      = f.text_field :title, autocomplete: "on" , class: 'form-control'
+      = f.label :content
+      = f.text_area :content, size: "24x6", class: 'form-control'
+      %br
+      = f.label :ticket_type
+      = f.select :ticket_type, [['paper ticket', 'paper ticket'], ['eTicket', 'eTicket']], autocomplete: "on" , class: 'form-control'
+      %br
+      = f.label :price
+      = f.number_field :price, autocomplete: "on" , class: 'form-control' 
+      = f.label :location
+      = f.text_field :location, autocomplete: "on" , class: 'form-control'
+      %br
+      %br
+      = f.label :category
+      = f.grouped_collection_select(:category_id, Category.where(main_id: nil).all, :subcategories, :text, :id, :text)
+      %br
+      %br
+      = f.label :picture
+      = f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
+      %br
+      %br   
+      Contact informations:
+      %br
+      = f.fields_for :user_attributes do |user_form|
+        = user_form.label :name
+        = user_form.text_field :name, placeholder: "#{current_user.name}", class: 'form-control'
+        = user_form.label :phone
+        = user_form.number_field :phone, placeholder: "#{current_user.phone}", class: 'form-control'
+
+      = f.submit yield(:btn_text), class: "btn btn-primary"
+    :javascript
+      $('#micropost_picture').bind('change', function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+          alert('Maximum file size is 5MB. Please choose a smaller file.');
+        }
+      });

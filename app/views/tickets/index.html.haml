@@ -1,0 +1,8 @@
+- provide(:title, 'All tickets')
+%h1
+  All tickets
+= will_paginate
+%table.table.table-striped.table-bordered.table-list
+  %tbody
+    = render @tickets
+= will_paginate

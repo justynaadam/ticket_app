@@ -1,0 +1,8 @@
+- provide(:title, "Edit announcement")
+- provide(:btn_text, "Update")
+%h1
+  Update your announcement
+%div.center
+  - if @ticket.picture?
+    = image_tag avatar_url(@ticket), size: 400
+= render 'ticket_form'

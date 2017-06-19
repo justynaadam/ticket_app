@@ -1,0 +1,29 @@
+%tr.admin-tr
+  %td.admin-td
+    = link_to user.id, admin_user_path(user)
+  %td.admin-td
+    = link_to user.email, admin_user_path(user)
+  %td.admin-td
+    - if user.name.present?
+      = link_to user.name, admin_user_path(user)
+  %td.admin-td
+    - if user.phone.present?
+      = link_to user.phone, admin_user_path(user)  
+  %td.admin-td
+    - if user.admin.present?
+      = link_to user.admin, admin_user_path(user) 
+  %td.admin-td
+    - if user.created_at.present?
+      = link_to user.created_at.to_s(:db), admin_user_path(user)  
+  %td.admin-td
+    - if user.updated_at.present?
+      = link_to user.updated_at.to_s(:db), admin_user_path(user)   
+  %td.admin-td
+    - if user.confirmed_at.present?
+      = link_to user.confirmed_at.to_s(:db), admin_user_path(user)   
+  %td.admin-td
+    - if user.unconfirmed_email.present?
+      = link_to user.unconfirmed_email, admin_user_path(user) 
+  %td
+    = link_to 'delete', admin_user_path(user), method: :delete
+

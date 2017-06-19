@@ -1,0 +1,8 @@
+%div{:id => "follow_form-#{@ticket.id}"}
+  - if current_user
+    - if current_user.following?(@ticket)
+      = render 'tickets/unfollow'
+    - else
+      = render 'tickets/follow'
+  - else
+    = render 'tickets/follow'

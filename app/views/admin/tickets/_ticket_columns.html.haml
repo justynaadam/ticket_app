@@ -1,0 +1,31 @@
+%table(style="width:100%" border="1|0")
+  = will_paginate @tickets
+  %tr
+    %th
+      = sortable('id', 'id', 'tickets')
+    %th
+      = sortable('title', 'title', 'tickets')
+    %th
+      = sortable('price', 'price', 'tickets')
+    %th
+      = sortable('ticket_type', 'ticket_type', 'tickets')
+    %th
+      = sortable('location', 'location', 'tickets')
+    %th
+      = sortable('picture', 'picture', 'tickets')
+    %th
+      = sortable('created_at', 'created_at', 'tickets')
+    %th
+      = sortable('updated_at', 'updated_at', 'tickets')
+    %th
+      = sortable('activated', 'activated', 'tickets')
+    %th
+      = sortable('activated_at', 'activated_at', 'tickets')
+    %th
+      = sortable('category', 'category_id', 'tickets')
+    %th
+      = sortable('user_id', 'user_id', 'tickets')
+    %th
+      action
+  = render @tickets
+= will_paginate @tickets

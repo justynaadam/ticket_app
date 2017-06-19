@@ -1,0 +1,34 @@
+%tr.admin-tr
+  %td.admin-td
+    = link_to ticket.id, admin_ticket_path(ticket) 
+  %td.admin-td
+    = link_to ticket.title, admin_ticket_path(ticket) 
+  %td.admin-td
+    = link_to ticket.price, admin_ticket_path(ticket) 
+  %td.admin-td
+    = link_to ticket.ticket_type, admin_ticket_path(ticket) 
+  %td.admin-td
+    = link_to ticket.location, admin_ticket_path(ticket) 
+  %td.admin-td
+    -  if ticket.picture.present?
+      = link_to ticket.picture, admin_ticket_path(ticket)
+  %td.admin-td
+    -  if ticket.created_at.present?
+      = link_to ticket.created_at.to_s(:db), admin_ticket_path(ticket)
+  %td.admin-td
+    - if ticket.updated_at.present? 
+      = link_to ticket.updated_at.to_s(:db), admin_ticket_path(ticket)
+  %td.admin-td
+    - if ticket.activated.present?
+      = link_to ticket.activated, admin_ticket_path(ticket) 
+  %td.admin-td
+    - if ticket.activated_at.present? 
+      = link_to ticket.activated_at.to_s(:db), admin_ticket_path(ticket)
+  %td.admin-td
+    = link_to ticket.category.text, admin_category_path(ticket.category)
+    main:
+    = link_to ticket.category.main.text, admin_category_path(ticket.category.main) 
+  %td.admin-td
+    = link_to ticket.user_id, admin_user_path(ticket.user) 
+  %td
+    = link_to 'delete', admin_ticket_path(ticket), method: :delete   

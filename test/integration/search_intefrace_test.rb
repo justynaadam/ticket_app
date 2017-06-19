@@ -65,7 +65,7 @@ class SearchIntefraceTest < ActionDispatch::IntegrationTest
     @user.confirm
     get searches_user_path(@user)
     assert_response :success
-    assert_match "Keywords: #{@search.keywords}", response.body
+    assert_match "Keywords:\n#{@search.keywords}", response.body
     assert_select 'a[href=?]', search_path(@search), text: 'delete'
     assert_select 'a[href=?]', search_path(@search), text: 'Show all tickets'
     # change link after add new ticket

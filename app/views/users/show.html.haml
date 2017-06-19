@@ -1,0 +1,20 @@
+%h5
+  Sort by:
+  = sortable('activated_at', 'latest', 'tickets')
+  = sortable('price', 'price', 'tickets')
+
+%div.panel.panel-default.panel-table
+  %div.panel-heading
+    %div.row
+      %div.col.col-xs-6
+        %h3.panel-title
+          = @user.name
+        %br
+        All users's tickets 
+
+  %div.panel-body
+    %table.table.table-striped.table-bordered.table-list
+      %tbody
+        - if @user.tickets.any?
+          = render @tickets
+          = will_paginate @tickets

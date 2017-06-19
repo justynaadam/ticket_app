@@ -1,0 +1,56 @@
+- provide(:title, "Ticket")
+%div.container
+  %div.row.pricing
+    %div.col-md-10
+      %div.well
+        %p
+          = link_to 'All categories', admin_categories_path
+          |
+          = link_to @ticket.category.main.text, admin_category_path(@ticket.category.main)
+          >>
+          = link_to @ticket.category.text, admin_category_path(@ticket.category)
+        %hr
+        - unless @previous_ticket.nil?
+          %p.btn.btn-default.left
+            = link_to "previous", admin_ticket_path(@previous_ticket)
+        - unless @next_ticket.nil?
+          %p.btn.btn-default.right
+            = link_to "next", admin_ticket_path(@next_ticket)
+        %br
+        %br
+        %p.center
+          - if @ticket.picture?
+            = image_tag avatar_url(@ticket), size: 400
+          
+        %hr
+        %p
+          = @ticket.created_at.to_formatted_s(:long)
+          Location:
+          = @ticket.location
+          type:
+          = @ticket.ticket_type
+        %h1
+          %b
+            = @ticket.title
+        %hr
+          = @ticket.content
+
+    %div.col-md-2
+      %div.well
+        %h3
+          %b
+            = @ticket.price
+        %hr
+        %p
+        = link_to @ticket.user.name, admin_user_path(@ticket.user)
+        %hr
+        - if @ticket.user.phone?
+          %p
+            Phone: 
+            = @ticket.user.phone
+        %hr
+        %p
+          Followers: 
+          = @ticket.followers.count
+
+= link_to "delete", admin_ticket_path(@ticket), method: :delete, data: { confirm: "You sure?" }

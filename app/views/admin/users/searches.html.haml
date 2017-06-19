@@ -1,0 +1,69 @@
+= render 'table_show' 
+%div.panel.panel-default.panel-table
+  %div.panel-heading
+    %div.row
+      %div.col.col-xs-6
+        %h3.panel-title
+          = @user.name
+        %br
+          Following searches
+  %div.panel-body
+    %table.table.table-striped.table-bordered.table-list
+      %tbody
+        - @user_searches.each do |search| 
+          %tr
+            - if search.keywords.present? 
+              %br
+                Keywords: #{search.keywords}
+
+            - if search.in_content?    
+              %br
+                searched in content 
+
+            - if search.with_picture?  
+              %br
+                only with picture 
+
+            - if search.location_keywords.present? 
+              %br
+                Location:
+                = search.location_keywords
+
+            - if search.category_id.present? 
+              %br
+                Category:
+                = Category.find(search.category_id).text 
+
+            - if search.minimum_price.present? 
+              %br  
+              Price from:
+              = search.minimum_price 
+
+            - if search.maximum_price.present? 
+              %br
+              Price to: 
+              = search.maximum_price
+
+            - if search.type_of_ticket.present? 
+              %br
+                Type of ticket:
+                = search.type_of_ticket 
+
+            %br
+              Searched:
+              = time_ago_in_words(search.created_at)
+              ago.
+            %hr
+            - if search.new_tickets.any? 
+              %a.btn.btn-warning{href: new_tickets_admin_search_path(search)}
+                Show new tickets
+              %span.badge
+                = search.new_tickets.count
+              &nbsp
+            - else
+              = link_to "Show all tickets", admin_search_path(search), class: "btn btn-primary"
+              &nbsp
+           
+            = link_to "delete", admin_search_path(search), method: :delete, class: "btn btn-danger" 
+            %hr
+    

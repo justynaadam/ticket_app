@@ -1,0 +1,11 @@
+%tr.admin-tr
+  %td.admin-td
+    = link_to search.id, admin_search_path(search)
+  %td.admin-td
+    = link_to search.created_at, admin_search_path(search)
+  %td.admin-td
+    = link_to search.updated_at, admin_search_path(search)
+  %td.admin-td
+    / = link_to search.user_id, admin_user_path(search.user)
+  %td
+    = link_to 'delete', admin_search_path(search), method: :delete

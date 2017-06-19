@@ -1,0 +1,19 @@
+- provide(:title, 'All searches')
+%h1
+  All searches
+%table(style="width:100%" border="1|0")
+  = will_paginate
+  %tr
+    %th
+      = sortable('id', 'id', 'searches')
+    %th
+      = sortable('created_at', 'created_at', 'searches')
+    %th
+      = sortable('updated_at', 'updated_at', 'searches')
+    %th
+      = sortable('user_id', 'user_id', 'searches')
+    %th
+      action
+    = render @searches
+
+= will_paginate

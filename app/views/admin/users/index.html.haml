@@ -1,0 +1,28 @@
+- provide(:title, 'All users')
+%h1
+  All users
+%table(style="width:100%" border="1|0")
+  = will_paginate
+  %tr
+    %th
+      = sortable('id', 'id', 'users')
+    %th
+      = sortable('email', 'email', 'users') 
+    %th
+      = sortable('name', 'name', 'users')
+    %th
+      = sortable('phone', 'phone', 'users') 
+    %th
+      = sortable('admin', 'admin', 'users')
+    %th
+      = sortable('created_at', 'created_at', 'users') 
+    %th
+      = sortable('updated_at', 'updated_at', 'users')
+    %th
+      = sortable('confirmed_at', 'confirmed_at', 'users')
+    %th
+      = sortable('unconfirmed_email', 'unconfirmed_email', 'users')
+    %th
+      action
+  = render @users
+= will_paginate

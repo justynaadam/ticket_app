@@ -1,0 +1,15 @@
+%table(style="width:100%" border="1|0")
+  = will_paginate
+  %tr
+    %th
+      = sortable('id', 'id', 'relationships')
+    %th
+      = sortable('created_at', 'created_at', 'relationships')
+    %th
+      = sortable('updated_at', 'updated_at', 'relationships')
+    %th
+      = sortable('follower_id', 'Follower_id (user)', 'relationships')
+    %th
+      = sortable('followed_id','Followed_id (ticket)', 'relationships')
+    %th action
+  = render @relationships

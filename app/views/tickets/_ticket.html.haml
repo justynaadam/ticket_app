@@ -1,0 +1,29 @@
+%tr#ticket.id
+  %td.hidden-xs
+    - if ticket.picture?
+      = image_tag avatar_url(ticket), size: 120
+    %td
+      = link_to ticket.title, ticket_path(ticket)
+      %br
+      = ticket.category.main.text
+      >
+      = ticket.category.text
+      %br
+        = ticket.location
+      %br
+      Added
+      = time_ago_in_words(ticket.created_at)
+      ago.
+      %br
+      - if current_user == ticket.user
+        = link_to "delete", ticket, method: :delete
+        = link_to "edit", edit_ticket_path(ticket)
+        - unless ticket.activated?
+          This ticket is non active
+      -else 
+        - @ticket = ticket
+        = render 'tickets/follow_form'
+    %td
+      = ticket.price
+
+   
