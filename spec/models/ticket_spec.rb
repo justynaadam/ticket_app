@@ -79,4 +79,23 @@ describe Ticket do
     it { should have_many(:relationships) }
     it { should have_many(:followers) }
   end
+
+  
+  describe 'finding previous and next ticket' do
+    before(:each) do
+      ticket.save
+      @first  = create(:ticket, updated_at: (ticket.updated_at - 2.minutes), category: ticket.category )
+      @second = create(:ticket, updated_at: (ticket.updated_at - 1.minutes), category: ticket.category )
+      @third  = create(:ticket, updated_at: (ticket.updated_at + 1.minutes), category: ticket.category )
+      @fourth = create(:ticket, updated_at: (ticket.updated_at + 2.minutes), category: ticket.category )
+    end
+      it 'returns previous ticket' do
+        previous_t = ticket.find_previous(ticket.updated_at, ticket.category_id)
+        expect(previous_t).to eq(@third)
+      end
+      it 'returns next ticket' do
+        next_t = ticket.find_next(ticket.updated_at, ticket.category_id)
+        expect(next_t).to eq(@second)
+      end
+  end
 end

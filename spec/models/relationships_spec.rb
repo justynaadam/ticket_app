@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Relationship do
-  let(:relationship) { Relationship.new(follower: create(:user, email: 'other@user.com'),
-		                                followed: create(:ticket) ) }
+  let(:relationship) { Relationship.new(follower: create(:user), #, email: 'other@user.com'),
+		                                    followed: create(:other_user_ticket) ) }
   it { expect(relationship).to be_valid }
   
   it 'is invalid without a follower' do
@@ -18,4 +18,3 @@ describe Relationship do
   end
 
 end
-
