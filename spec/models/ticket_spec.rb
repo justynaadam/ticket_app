@@ -13,43 +13,43 @@ describe Ticket do
     end
 
     it 'is invalid without a title' do
-      ticket.title = '   '
+      ticket.title = nil
       ticket.valid?
       expect(ticket.errors[:title]).to include("can't be blank")
     end
 
     it 'is invalid without a content' do
-      ticket.content = '   '
+      ticket.content = nil
       ticket.valid?
       expect(ticket.errors[:content]).to include("can't be blank")
     end
 
     it 'is invalid without a price' do
-      ticket.price = '   '
+      ticket.price = nil
       ticket.valid?
       expect(ticket.errors[:price]).to include("can't be blank")
     end
 
     it 'is invalid without a ticket_type' do
-      ticket.ticket_type = '   '
+      ticket.ticket_type = nil
       ticket.valid?
       expect(ticket.errors[:ticket_type]).to include("can't be blank")
     end
 
     it 'is invalid without a location' do
-      ticket.location = '   '
+      ticket.location = nil
       ticket.valid?
       expect(ticket.errors[:location]).to include("can't be blank")
     end
 
     it 'title should be at most 70 characters' do
-      ticket.title = 'a' * 71
+      ticket.title = Faker::Lorem.characters(71)
       ticket.valid?
       expect(ticket.errors[:title]).to include("is too long (maximum is 70 characters)")
     end
 
     it 'content should be at most 4096 characters' do
-      ticket.content = 'a' * 4097
+      ticket.content = Faker::Lorem.characters(4097)
       ticket.valid?
       expect(ticket.errors[:content]).to include("is too long (maximum is 4096 characters)")
     end
@@ -61,7 +61,7 @@ describe Ticket do
     end
 
     it 'location should be at most 50 characters' do
-      ticket.location = 'a' * 51
+      ticket.location = Faker::Lorem.characters(51)
       ticket.valid?
       expect(ticket.errors[:location]).to include("is too long (maximum is 50 characters)")
     end
@@ -76,11 +76,9 @@ describe Ticket do
   context 'model assiociations' do
     it { should belong_to(:user) }
     it { should belong_to(:category) }
-    it { should have_many(:relationships) }
-    it { should have_many(:followers) }
+    it { should have_many(:relationships).with_foreign_key('followed_id').dependent(:destroy) }
+    it { should have_many(:followers).through(:relationships).source(:follower) }
   end
-
-  
   describe 'finding previous and next ticket' do
     before(:each) do
       ticket.save

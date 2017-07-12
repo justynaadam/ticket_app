@@ -1,11 +1,11 @@
 FactoryGirl.define do
   
   factory :ticket do
-	title 'Lorem ipsum'
-	content 'Lorem ipsum dolor sit amet'
+	title Faker::Lorem.sentence
+	content Faker::Lorem.sentence
 	price 100
 	ticket_type 'paper'
-	location 'Location'
+	location Faker::GameOfThrones.city
 	user
 	association :category, factory: :subcategory_1
 	activated :true

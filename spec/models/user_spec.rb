@@ -37,37 +37,23 @@ describe User do
     end
 
     it 'name should not be blank' do
-      user.name = ' ' * 5
+      user.name = ''
       user.valid?
       expect(user.errors[:name]).to include("can't be blank")
     end 
 
     it 'phone should not be too long' do
-      user.phone = ('9' * 16).to_i
+      user.phone = Faker::Number.number(16).to_i
       user.valid?
       expect(user.errors[:phone]).to include("is too long (maximum is 15 characters)")
     end
-
-
   end
 
   context 'model associacions' do
-  	before(:each) { user.save }
-    it 'associated tickets should be destroyed' do
-      ticket = user.tickets.build(title: 'Lorem ipsum',
-                                  content: 'Lorem ipsum dolor sit amet',
-                                  price: 100,
-                                  ticket_type: 'paper',
-                                  location: 'location')
-      ticket.category = create(:subcategory_1)
-      ticket.save
-      expect { user.destroy }.to change { Ticket.count }.by(-1)
-    end
-
-    it 'associated searches should be destroyed' do
-      search = user.searches.create(keywords: 'Lorem ipsum')
-      expect { user.destroy }.to change { Search.count }.by(-1)
-    end
+    it { should have_many(:tickets).dependent(:destroy) }
+    it { should have_many(:relationships).with_foreign_key('follower_id').dependent(:destroy) }
+    it { should have_many(:following).through(:relationships).source(:followed) }
+    it { should have_many(:searches).dependent(:destroy) }
   end
 
     it 'should follow and unfollow ticket' do

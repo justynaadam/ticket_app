@@ -19,4 +19,11 @@ describe Category do
     expect(subcategory.text).to eq(mixed_case_text.downcase)
   end
 
+  context 'model assiociations' do
+    it { should belong_to(:main).class_name('Category') }
+    it { should have_many(:subcategories).class_name('Category').with_foreign_key('main_id').dependent(:destroy) }
+    it { should have_many(:tickets) }
+  end
+
+
 end
