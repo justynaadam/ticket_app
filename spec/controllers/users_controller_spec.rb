@@ -13,6 +13,7 @@ describe UsersController do
   	  expect(user).not_to be_admin
   	end
   end
+  
   describe 'following' do
     it 'redirects following when not logged in' do
       get :following, params: { id: user }
