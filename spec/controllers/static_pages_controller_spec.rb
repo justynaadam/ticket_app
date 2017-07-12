@@ -14,13 +14,13 @@ describe StaticPagesController do
     end
   end
   describe 'help' do
-  	it 'render the help template' do
-  	  get :help
-  	  expect(response).to render_template :help
-  	end
-  	it 'titile should be proper' do
-  	  get :help
-  	  assert_select 'title', "Help | #{base_title}"
-  	end
+    it 'render the help template' do
+      get :help
+      expect(response).to render_template :help
+    end
+    it 'titile should be proper' do
+      get :help
+      assert_select 'title', "Help | #{base_title}"
+    end
   end
 end

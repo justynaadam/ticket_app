@@ -12,7 +12,7 @@ describe SearchesController do
     end
   end
   describe 'GET #show' do
-  	before(:each) { @search = Search.create() }
+    before(:each) { @search = Search.create() }
     it 'assings the requested search to @search' do
       get :show, params: { id: @search }
       expect(assigns(:search)).to eq @search
@@ -21,6 +21,6 @@ describe SearchesController do
       get :show, params: { id: @search }
       expect(response).to render_template :show
     end 
-  end	
-	
+  end 
+  
 end
