@@ -48,10 +48,18 @@ group :development, :test do
   # and get a debugger console
   gem 'byebug', platform: :mri
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '1.3.11'
+  #gem 'sqlite3', '1.3.11'
   #rspec
-  gem 'rspec-rails', '~> 3.5.2'
+  gem 'rspec-rails' #, '~> 3.5.2'
   gem 'factory_girl_rails', '~> 4.8.0'
+
+  gem 'sqlite3'
+  gem 'rspec-rails'
+  gem "capybara"
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'launchy'
+  gem 'database_cleaner'
 
 end
 
@@ -71,10 +79,11 @@ group :test do
   gem 'minitest-reporters',       '1.1.9'
   gem 'rails-controller-testing', '0.1.1'
   #rspec
-  gem 'capybara'
-  gem 'database_cleaner', '~> 1.5.3'
-  gem 'launchy'
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  #gem 'capybara'
+  #gem 'database_cleaner', '~> 1.5.3'
+  #gem 'launchy'
+  #gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  #gem 'selenium-webdriver'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
