@@ -31,18 +31,14 @@ class SearchesController < ApplicationController
   end
 
   def update
-    if params[:user_id] == current_user.id.to_s
-      @search.update_attribute(:user_id, params[:user_id])
-      @search.update_time
-      respond_to do |format|
-        format.html do
-          redirect_to @search
-          flash[:success] = 'Search saved'
-        end
-        format.js
+    @search.update_attribute(:user_id, current_user.id)
+    @search.update_time
+    respond_to do |format|
+      format.html do
+        flash[:success] = 'Search saved'
+        redirect_to @search
       end
-    else
-      redirect_to root_path
+      format.js
     end
   end
 

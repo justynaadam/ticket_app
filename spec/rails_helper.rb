@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'support/factory_girl'
 require 'support/devise_macros'
 require 'support/ticket_macros'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 require "capybara/rspec"
 require 'capybara/rails'

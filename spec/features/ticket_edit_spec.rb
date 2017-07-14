@@ -12,18 +12,8 @@ feature 'Ticket edit' do
   
   scenario 'valid edit information', js: true do
     visit edit_ticket_path(ticket)
-    valid_attr = {
-      title: Faker::Lorem.characters(20),
-      content: Faker::Lorem.sentence,
-      price: 200,
-      ticket_type: 'eTicket',
-      location: Faker::GameOfThrones.city,
-      category: Category.all.find(4).text,
-      name: Faker::Name.name, 
-      phone: Faker::PhoneNumber.subscriber_number(9).to_i
-    }
-    
-    fillin_edit_ticket_form(valid_attr)
+    valid_attr = create_ticket_attributes('valid')
+    fillin_ticket_form(valid_attr)
     attach_file 'Picture', "#{Rails.root}/app/assets/images/rails.png"
     click_button('Update')
     expect(page).to have_content('Announcement updated')
@@ -45,17 +35,8 @@ feature 'Ticket edit' do
   
   scenario 'invalid edit information', js: true do
     visit edit_ticket_path(ticket)
-    invalid_attr = {
-      title: nil,
-      content: nil,
-      price: nil,
-      ticket_type: 'eTicket',
-      location: nil,
-      category: Category.all.find(4).text,
-      name: nil, 
-      phone: nil
-    }
-    fillin_edit_ticket_form(invalid_attr)
+    invalid_attr = create_ticket_attributes
+    fillin_ticket_form(invalid_attr)
     click_button('Update')
     ticket.reload
     user.reload
