@@ -34,7 +34,7 @@ feature 'Search intefrace' do
   scenario 'does show user search with proper links', js: true do
     user = create(:user)
     user.confirm 
-    login_as(user, scpoe: :user)
+    login_as(user, scope: :user)
     search = create(:search, user_id: user.id, time: Time.zone.now - 3.hours)
     keyword = search.keywords
     visit searches_user_path(user)
