@@ -31,7 +31,7 @@ class SearchesController < ApplicationController
   end
 
   def update
-    @search.update_attribute(:user_id, current_user.id)
+    @search.update_attributes(user_id: current_user.id)
     @search.update_time
     respond_to do |format|
       format.html do

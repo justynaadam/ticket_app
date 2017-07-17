@@ -21,7 +21,7 @@ feature 'Search intefrace' do
   scenario 'valid save search', js: true do
     user = create(:user)
     user.confirm 
-    login_as(user, scpoe: :user)
+    login_as(user, scope: :user)
     search = create(:search)
     visit search_path(search)
     click_button 'save search'

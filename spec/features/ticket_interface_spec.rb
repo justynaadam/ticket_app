@@ -4,7 +4,7 @@ feature 'Ticket intefrace' do
   let(:user) { create(:user) }
   before(:each) do
     user.confirm 
-    login_as(user, scpoe: :user)
+    login_as(user, scope: :user)
     create_sample_categories
   end
   scenario 'invalid create information', js: true do
@@ -17,7 +17,7 @@ feature 'Ticket intefrace' do
     visit new_ticket_path
     valid_attr = create_ticket_attributes('valid')
     fillin_ticket_form(valid_attr)
-    attach_file 'Picture', "#{Rails.root}/app/assets/images/rails.png"
+    attach_file 'Picture', "#{Rails.root.join('app','assets','images','rails.png')}"
     expect{click_button('Add ticket')}.to change(Ticket, :count).by(1)
     expect(page).to have_content('Please check your mail to activate your ticket.')
     expect(current_path).to eq root_path

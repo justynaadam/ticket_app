@@ -6,7 +6,7 @@ feature 'Ticket edit' do
 
   before(:each) do
     user.confirm 
-    login_as(user, scpoe: :user)
+    login_as(user, scope: :user)
     create_sample_categories
   end
   

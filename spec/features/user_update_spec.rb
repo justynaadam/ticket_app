@@ -4,7 +4,7 @@ feature 'User update' do
   let(:user) { create(:user) }
   before(:each) do
     user.confirm 
-    login_as(user, scpoe: :user)
+    login_as(user, scope: :user)
   end
   scenario 'valid update information', js: true do
     @name =  Faker::Name.name 

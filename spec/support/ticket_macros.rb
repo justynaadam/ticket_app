@@ -3,10 +3,10 @@ module TicketMacros
   def create_sample_categories
     main_categories = %w[event travel]
     main_categories.each { |main_category| Category.create!(text: main_category) }
-    e_subcategories = %w[sport music cinema thetre]
-    e_subcategories.each { |e_subcategory| Category.create!(text: e_subcategory, main_id: 1) }
-    t_subcategories = %w[bus train plane]
-    t_subcategories.each { |t_subcategory| Category.create!(text: t_subcategory, main_id: 2) }
+    event_subcategories = %w[sport music cinema thetre]
+    event_subcategories.each { |event_subcategory| Category.create!(text: event_subcategory, main_id: 1) }
+    ticket_subcategories = %w[bus train plane]
+    ticket_subcategories.each { |ticket_subcategory| Category.create!(text: ticket_subcategory, main_id: 2) }
   end
   def fillin_ticket_form(args)
     fill_in 'Title', with: args[:title]
