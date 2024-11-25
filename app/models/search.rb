@@ -14,7 +14,7 @@ class Search < ApplicationRecord
   end
 
   def update_time
-    update_attribute(:time, Time.zone.now)
+    update_attributes(time: Time.zone.now)
   end
 
   def new_tickets

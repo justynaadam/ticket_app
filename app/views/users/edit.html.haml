@@ -9,7 +9,7 @@
   = f.label :phone
   = f.number_field :phone, autocomplete: "on" , class: 'form-control'
 
-  = f.submit 'Update' , class: "btn btn-primary"
+  = f.submit 'Update' , class: "btn btn-primary", id: 'change-contact-details'
 
     
 %h2
@@ -25,7 +25,7 @@
       Currently waiting confirmation for:
       = resource.unconfirmed_email
 
-  = f.submit "Update", class: "btn btn-primary"
+  = f.submit "Update", class: "btn btn-primary",  id: 'change-email'
 
 %h2
   Change password
@@ -52,8 +52,8 @@
   %br
   = f.password_field :current_password, class: 'form-control'
 
-  = f.submit "Update", class: "btn btn-primary"
+  = f.submit "Update", class: "btn btn-primary",  id: 'change-password'
  
   %h2
     Cancel my account
-  = button_to "Cancel my account", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete
+  = button_to "Cancel my account", registration_path(resource_name),  id: 'cancel', class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete
